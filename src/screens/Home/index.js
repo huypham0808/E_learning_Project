@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
+import ListofCourse from '../../components/ListCourse'
 
-export default class Home extends Component {
-  render() {
+export default function HomeScreen(props) {
+   
     return (
-      <div>Home</div>
+        <div className='container'>
+            <ListofCourse/>
+        </div>
     )
-  }
-};
+}
