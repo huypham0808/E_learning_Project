@@ -1,0 +1,53 @@
+/* CSS for Navbar */
+.nav-item a {
+    font-weight: bold;
+}
+.nav-bar .nav-link:hover a{
+    color: green !important;
+}
+.elearningNav {
+    z-index: 1;
+}
+
+.danhMucKhoaHoc {
+    margin-top: 120px;
+}
+
+.dropbtn {
+    cursor: pointer;
+
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: rgba(0, 128, 0, 0.548);
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 6px 16px;
+    text-decoration: none;
+    display: block;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.dropdown-content a:hover {
+    color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+

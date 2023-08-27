@@ -4,12 +4,32 @@ import {lazy} from 'react';
 const routes = [
     {
         path: "",
-        element: lazy(()=> import("../screens/Home")),
+        element: lazy(()=> import("../screens/Home/")),
         nested: [
             {
-                path: "",
+                path: "home",
                 element: lazy(() => import("../screens/Home/Homepage"))
-            }
+            },
+            {
+                path: "danhmuc",
+                element: lazy(() => import("../screens/Home/Danhmuc"))
+            },
+            {
+                path: "khoahoc",
+                element: lazy(() => import("../screens/Home/Course"))
+            },
+            {
+                path: "blog",
+                element: lazy(() => import("../screens/Home/Blog"))
+            },
+            {
+                path: "sukien",
+                element: lazy(() => import("../screens/Home/Events"))
+            },
+            {
+                path: "thongtin",
+                element: lazy(() => import("../screens/Home/Informations"))
+            },
         ]
     },
 ];
