@@ -1,9 +1,10 @@
 import React from 'react';
+import Carousel from '../_components/CarouselKhoaHoc';
 
 export default function Homepage() {
     return (
-        <div className='container homePage mt-5'>
-            <h3>Homepage</h3>
+        <div className='container homePage'>
+            <Carousel/>           
         </div>
     )
 };
