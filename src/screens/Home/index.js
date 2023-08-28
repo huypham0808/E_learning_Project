@@ -9,7 +9,6 @@ export default function HomeScreen(props) {
     return (
         <div>
             <Navbar />
-            
             <Outlet />
             <Footer />
         </div>

@@ -9,7 +9,7 @@ export default function Navbar() {
                 <img src="https://cdni.iconscout.com/illustration/premium/thumb/e-learning-4119535-3418176.png" alt='/'
                     style={{ height: '100px', width: '100%', padding: 0 }}></img>
             </NavLink>
-            <form className="form-inline my-2 my-lg-0">
+            <form className="form-inline my-2 my-lg-0 eleFormSearch">
                 <input className="form-control mr-sm-2" type="search" placeholder="Tìm kiếm" aria-label="Search" />
             </form>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
