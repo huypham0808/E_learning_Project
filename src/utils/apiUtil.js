@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const maNhom = "GP02";
+export const groupid = "GP02";
 const api = axios.create({
     baseURL: '"https://elearningnew.cybersoft.edu.vn/api";'
 })
