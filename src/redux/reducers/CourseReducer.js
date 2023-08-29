@@ -1,36 +1,34 @@
-import axios from 'axios';
-import { createSlice } from '@reduxjs/toolkit'
+import * as actions from '../types/constants';
+
+
 const initialState = {
-    CourseInformation : [
+    loading: false,
+    data: null,
+    error: null
+};
 
-    ],
-}
-
-const CourseReducer = createSlice({
-  name: 'CourseReducer',
-  initialState,
-  reducers: {
-
-  }
-});
-
-export const {} = CourseReducer.actions
-
-export default CourseReducer.reducer
-
-export const getAllCourseApi = () => {
-    return async(dispatch, getState) => {
-        try {
-            const result = await axios ({
-                url: 'https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP02',
-                method: 'GET',
-            })
-            dispatch({
-                type: 'CourseReducer/getAllCourseApi',
-                data: result.data.content,
-            })
-        }catch (err) {
-            console.log(err);
-        }
+const CourseReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case actions.COURSE_REQUEST:
+            state.loading = true;
+            state.data = null;
+            state.error = null;
+            return {...state};
+        case actions.COURSE_SUCCESS:
+            state.loading = false;
+            state.data = action.payload;
+            state.error = null;
+            return {...state};
+        case actions.COURSE_FAIL:
+            state.loading = false;
+            state.data = null;
+            state.error = action.payload;
+            return {...state};
+        default:
+            return {...state};
     }
 }
+export default CourseReducer;
+
+
+
