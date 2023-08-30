@@ -7,6 +7,10 @@ const routes = [
         element: lazy(()=> import("../screens/Home/")),
         nested: [
             {
+                path: "",
+                element: lazy(() => import("../screens/Home/Homepage"))
+            },
+            {
                 path: "home",
                 element: lazy(() => import("../screens/Home/Homepage"))
             },

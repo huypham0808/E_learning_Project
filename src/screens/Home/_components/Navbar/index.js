@@ -5,7 +5,7 @@ import '../../../../assets/style.css'
 export default function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light w-100 position-fixed fixed-top elearningNav">
-            <NavLink className="navbar-brand align-items-center ml-3 text-center" style={{ height: "100px" }} to="/home">
+            <NavLink className="navbar-brand align-items-center ml-3 text-center" style={{ height: "100px" }} to="/">
                 <img src="https://cdni.iconscout.com/illustration/premium/thumb/e-learning-4119535-3418176.png" alt='/'
                     style={{ height: '100px', width: '100%', padding: 0 }}></img>
             </NavLink>
@@ -18,7 +18,7 @@ export default function Navbar() {
             <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li className="nav-item dropdown">
-                        <NavLink className="nav-link dropbtn" to="/home">
+                        <NavLink className="nav-link dropbtn" to="/">
                             <i class="fa-solid fa-bars mr-2"></i>
                             DANH MỤC
                         </NavLink>
