@@ -50,7 +50,7 @@ export default function InforCourse() {
                 </div>
                 <div className='inforItemHome inforSmallItemC'>
                     <div className='inforItemContent'>
-                        <h3>CHỨNG NHẬNa</h3>
+                        <h3>CHỨNG NHẬN</h3>
                         <ul>
                             <li>Chấm bài và có thể vấn đáp trực tuyến để review</li>
                             <li>Hệ thống của chúng tôi cũng tạo ra cho bạn một CV trực tuyến độc đáo</li>
