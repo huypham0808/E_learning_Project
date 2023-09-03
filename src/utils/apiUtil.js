@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const groupid = "GP02";
 const api = axios.create({
-    baseURL: '"https://elearningnew.cybersoft.edu.vn/api";'
+    baseURL: "https://elearningnew.cybersoft.edu.vn/api",
 })
 api.interceptors.request.use((config) => {
     const accessToken = localStorage.getItem("USER_LOGIN")
