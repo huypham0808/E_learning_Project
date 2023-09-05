@@ -61,8 +61,13 @@
 .dropdown:hover .dropdown-content {
     display: block;
 }
-.eleFormSearch {
-    margin-right: 31rem;
+
+.txtSearch {
+    width: 200px;
+    margin-right: 150px !important;
+}
+.btnLogin {
+    width: 150px;
 }
 /*---------------------- CSS for Carousel ---------------------- */
 .sliderHome {
