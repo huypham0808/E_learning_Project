@@ -1,12 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-function HomeListCourse(props) {
+const HomeListCourse = (props) => {
     const { listCourse } = props;
-
     const renderListCourse = () => {
-        return listCourse?.map((course, index) => {
+        return listCourse?.map((course) => {
             return (
-                <div className="card" key={index}>
+                <div className="card" key={course.maKhoaHoc}>
                     <img className="card-img-top" src={course.hinhAnh} alt='/' />
                     <div className="card-body">
                         <h4 className="card-title">{course.tenKhoaHoc}</h4>
@@ -15,14 +14,14 @@ function HomeListCourse(props) {
                 </div>
             )
         })
-    }
-
-
+    };
     return (
-        <div className='row'>
-            <div className='my-3 title text-danger'>
-                <h2>Danh Sách Khóa Học</h2>
-                {renderListCourse()}
+        <div>
+            <h2>Danh Sách Khóa Học</h2>
+            <div className='row'>
+                <div className='col-md-3'>
+                    {renderListCourse()}
+                </div>
             </div>
         </div>
     )

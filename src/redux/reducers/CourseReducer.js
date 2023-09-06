@@ -1,25 +1,26 @@
-import * as actions from '../types/constants';
+//import * as actions from '../types/constants';
+import {COURSE_REQUEST, COURSE_SUCCESS, COURSE_FAIL} from '../types/constants';
 
 
 const initialState = {
     loading: false,
     data: null,
-    error: null
+    error: null,
 };
 
 const CourseReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actions.COURSE_REQUEST:
+        case COURSE_REQUEST:
             state.loading = true;
             state.data = null;
             state.error = null;
             return {...state};
-        case actions.COURSE_SUCCESS:
+        case COURSE_SUCCESS:
             state.loading = false;
             state.data = action.payload;
             state.error = null;
             return {...state};
-        case actions.COURSE_FAIL:
+        case COURSE_FAIL:
             state.loading = false;
             state.data = null;
             state.error = action.payload;
