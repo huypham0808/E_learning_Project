@@ -23,7 +23,7 @@ export default function Navbar() {
                             <i class="fa-solid fa-bars mr-2"></i>
                             DANH MỤC
                         </NavLink>
-                        <div className="dropdown-content" style={{ left: 0 }}>
+                        <div className="dropdown-content" style={{ left: 0 }}>g
                             <NavLink href="/" alt="/">LẬP TRÌNH BACKEND</NavLink>
                             <NavLink href="/" alt="/">THIẾT KẾ WEB</NavLink>
                             <NavLink href="/" alt="/">LẬP TRÌNH DI ĐỘNG</NavLink>

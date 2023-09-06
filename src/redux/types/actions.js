@@ -1,36 +1,37 @@
-import api, {groupid} from "../../utils/apiUtil";
-import * as actions from '../types/constants';
+import api, { groupid } from "../../utils/apiUtil";
+//import * as actions from '../types/constants';
+import { COURSE_REQUEST, COURSE_SUCCESS, COURSE_FAIL } from '../types/constants';
 
 //action get List of Course
 export const actListCourse = () => {
     return (dispatch) => {
-        dispatch(actListCourseRequest)
+        dispatch(actListCourseRequest())
         api.get(`QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=${groupid}`)
-        .then((result) => {
-            if(result.data.statusCode === 200) {
-                dispatch(actListCourseSuccess(result.data.content))
-            }
-        })
-        .catch((err) => {
-            actListCourseFail(err);
-        })
+            .then((result) => {
+                if (result.data.statusCode === 200) {
+                    dispatch(actListCourseSuccess(result.data.content))
+                }
+            })
+            .catch((err) => {
+                dispatch(actListCourseFail(err));
+            })
     }
 };
 
 const actListCourseRequest = () => {
     return {
-        type: actions.COURSE_REQUEST
+        type: COURSE_REQUEST,
     }
 };
 const actListCourseSuccess = (data) => {
     return {
-        type: actions.COURSE_SUCCESS,
+        type: COURSE_SUCCESS,
         payload: data,
     }
 };
 const actListCourseFail = (error) => {
     return {
-        type: actions.COURSE_FAIL,
+        type: COURSE_FAIL,
         payload: error,
     }
 }; 
