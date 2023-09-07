@@ -10,19 +10,19 @@ export default function Homepage() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(actListCourse())
-    });
-    const courseData = useSelector((state) => state.CourseReducer.data);
+    },[]);
+    const {data} = useSelector((state) => state.CourseReducer);
     const renderHomeListCourse = () => {
-        return <>
-            <HomeListCourse listCourse={courseData} />
-        </>
+        return data?.map((course,index) => {
+            return <HomeListCourse listCourse={course} key={index}/>
+        })
     };
 
     return (
         <div className='homePage'>
             <Carousel />
             <InforCourse />
-            <section>{renderHomeListCourse()}</section>
+            <section className='row'>{renderHomeListCourse()}</section>
         </div>
     )
 };
