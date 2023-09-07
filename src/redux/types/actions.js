@@ -1,21 +1,21 @@
-import api, { groupid } from "../../utils/apiUtil";
-//import * as actions from '../types/constants';
+import api from "../../utils/apiUtil";
 import { COURSE_REQUEST, COURSE_SUCCESS, COURSE_FAIL } from '../types/constants';
 
 //action get List of Course
 export const actListCourse = () => {
     return (dispatch) => {
-        dispatch(actListCourseRequest())
-        api.get(`QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=${groupid}`)
+        dispatch(actListCourseRequest());
+        api.get(`QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP09`)
             .then((result) => {
+                console.log(result.data);
                 if (result.data.statusCode === 200) {
-                    dispatch(actListCourseSuccess(result.data.content))
+                    dispatch(actListCourseSuccess(result.data))
                 }
             })
             .catch((err) => {
                 dispatch(actListCourseFail(err));
-            })
-    }
+            });
+    };
 };
 
 const actListCourseRequest = () => {
