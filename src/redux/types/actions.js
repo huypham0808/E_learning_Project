@@ -10,9 +10,7 @@ export const fetchListCourse = (keyword = "") => {
             : "QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP09";
         api.get(url)
             .then((result) => {
-                if (result.data.statusCode === 200) {
-                    dispatch(actListCourseSuccess(result.data));
-                }
+                dispatch(actListCourseSuccess(result.data));
             })
             .catch((err) => {
                 dispatch(actListCourseFail(err));
