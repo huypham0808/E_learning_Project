@@ -1,15 +1,17 @@
 import api from "../../utils/apiUtil";
-import { COURSE_REQUEST, COURSE_SUCCESS, COURSE_FAIL } from '../types/constants';
+import * as actionTypes from './constants';
 
 //action get List of Course
-export const actListCourse = () => {
+export const fetchListCourse = (keyword = "") => {
     return (dispatch) => {
         dispatch(actListCourseRequest());
-        api.get(`QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP09`)
+        const url = keyword
+            ? `QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${keyword}&MaNhom=GP09`
+            : "QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP09";
+        api.get(url)
             .then((result) => {
-                console.log(result.data);
                 if (result.data.statusCode === 200) {
-                    dispatch(actListCourseSuccess(result.data))
+                    dispatch(actListCourseSuccess(result.data));
                 }
             })
             .catch((err) => {
@@ -18,20 +20,14 @@ export const actListCourse = () => {
     };
 };
 
-const actListCourseRequest = () => {
-    return {
-        type: COURSE_REQUEST,
-    }
-};
-const actListCourseSuccess = (data) => {
-    return {
-        type: COURSE_SUCCESS,
-        payload: data,
-    }
-};
-const actListCourseFail = (error) => {
-    return {
-        type: COURSE_FAIL,
-        payload: error,
-    }
-}; 
+const actListCourseRequest = () => ({
+    type: actionTypes.COURSE_REQUEST,
+});
+const actListCourseSuccess = (data) => ({
+    type: actionTypes.COURSE_SUCCESS,
+    payload: data,
+});
+const actListCourseFail = (error) => ({
+    type: actionTypes.COURSE_FAIL,
+    payload: error,
+}); 
