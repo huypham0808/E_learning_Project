@@ -5,106 +5,101 @@ import './style.css'
 
 export default function Footer() {
     return (
-        <footer id="elearningFooter" className='elearningFooter mt-5'>
-            {/* Section: Links  */}
-            <section className style={{ background: "#f0f8ff" }}>
-                <div className="container text-center text-md-start">
-                    {/* Grid row */}
-                    <div className="row">
-                        {/* Grid column */}
-                        <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                            {/* Content */}
-                            <h6 className="text-uppercase fw-bold">Company name</h6>
-                            <hr className="mb-4 mt-0 d-inline-block mx-auto" style={{ width: 60, backgroundColor: '#7c4dff', height: 2 }} />
-                            <p>
-                                Here you can use rows and columns to organize your footer
-                                content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                                elit.
-                            </p>
+        <footer className='footerPage mt-5' style={{ background: "#f0f8ff" }}>
+            <div className="footerBody">
+                <div>
+                    <div className='row textCardTitle'>
+                        <div className="p-2 col-md-4 col-sm-6">
+                            <a href="" className='mr-5 textLogo'>
+                                <span className='textE'>H </span>
+                                learning
+                                <i className='far fa-keyboard iconLogo'></i>
+                            </a>
+                            <ul className='menuFooter'>
+                                <li>
+                                    <i className='fas fa-phone-alt iconFooter'></i>
+                                    <span>1800-123-4567</span>
+                                </li>
+                                <li>
+                                    <i className='fas fa-envelope-open-text iconFooter'></i>
+                                    <span>devit@gmail.com</span>
+                                </li>
+                                <li>
+                                    <i className='fas fa-map-marker-alt iconFooter'></i>
+                                    <span>Đà Nẵng</span>
+                                </li>
+                            </ul>
                         </div>
-                        {/* Grid column */}
-                        {/* Grid column */}
-                        <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                            {/* Links */}
-                            <h6 className="text-uppercase fw-bold">Products</h6>
-                            <hr className="mb-4 mt-0 d-inline-block mx-auto" style={{ width: 60, backgroundColor: '#7c4dff', height: 2 }} />
-                            <p>
-                                <a href="#!" className="text-white">MDBootstrap</a>
-                            </p>
-                            <p>
-                                <a href="#!" className="text-white">MDWordPress</a>
-                            </p>
-                            <p>
-                                <a href="#!" className="text-white">BrandFlow</a>
-                            </p>
-                            <p>
-                                <a href="#!" className="text-white">Bootstrap Angular</a>
-                            </p>
+                        <div className="p-2 col-md-2 col-sm-3 col-6">
+                            <h3 className='textFooterTitle'>Liên kết</h3>
+                            <ul className='menuFooter'>
+                                <li>
+                                    <i className='fas fa-chevron-right'></i>
+                                    <span> Trang chủ</span>
+                                </li>
+                                <li>
+                                    <i className='fas fa-chevron-right'></i>
+                                    <span> Dịch vụ</span>
+                                </li>
+                                <li>
+                                    <i className='fas fa-chevron-right'></i>
+                                    <span> Nhóm</span>
+                                </li>
+                                <li>
+                                    <i className='fas fa-chevron-right'></i>
+                                    <span> Blog</span>
+                                </li>
+                            </ul>
                         </div>
-                        {/* Grid column */}
-                        {/* Grid column */}
-                        <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                            {/* Links */}
-                            <h6 className="text-uppercase fw-bold">Useful links</h6>
-                            <hr className="mb-4 mt-0 d-inline-block mx-auto" style={{ width: 60, backgroundColor: '#7c4dff', height: 2 }} />
-                            <p>
-                                <a href="#!" className="text-dark">Your Account</a>
-                            </p>
-                            <p>
-                                <a href="#!" className="text-dark">Become an Affiliate</a>
-                            </p>
-                            <p>
-                                <a href="#!" className="text-dark">Shipping Rates</a>
-                            </p>
-                            <p>
-                                <a href="#!" className="text-dark">Help</a>
-                            </p>
+                        <div className="p-2 col-md-2 col-sm-3 col-6">
+                            <h3 className='textFooterTitle'>Khoá học</h3>
+                            <ul className='menuFooter'>
+                                <li>
+                                    <i className='fas fa-chevron-right'></i>
+                                    <span> Front End</span>
+                                </li>
+                                <li>
+                                    <i className='fas fa-chevron-right'></i>
+                                    <span> Back End</span>
+                                </li>
+                                <li>
+                                    <i className='fas fa-chevron-right'></i>
+                                    <span> Full Stack</span>
+                                </li>
+                                <li>
+                                    <i className='fas fa-chevron-right'></i>
+                                    <span> NodeJS</span>
+                                </li>
+                            </ul>
                         </div>
-                        {/* Grid column */}
-                        {/* Grid column */}
-                        <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                            {/* Links */}
-                            <h6 className="text-uppercase fw-bold">Contact</h6>
-                            <hr className="mb-4 mt-0 d-inline-block mx-auto" style={{ width: 60, backgroundColor: '#7c4dff', height: 2 }} />
-                            <p><i className="fas fa-home mr-3" /> New York, NY 10012, US</p>
-                            <p><i className="fas fa-envelope mr-3" /> info@example.com</p>
-                            <p><i className="fas fa-phone mr-3" /> + 01 234 567 88</p>
-                            <p><i className="fas fa-print mr-3" /> + 01 234 567 89</p>
+                        <div className="p-2 col-md-4">
+                            <h3 className='textFooterTitle'>Đăng ký tư vấn</h3>
+                            <form action="">
+                                <input type="text" className='formFooter' placeholder='Họ và tên' />
+                                <input type="text" className='formFooter' placeholder='Email' />
+                                <input type="text" className='formFooter' placeholder='Số điện thoại' />
+                            </form>
+                            <button className='btn btn-warning text-white mt-2'>Đăng ký</button>
                         </div>
-                        {/* Grid column */}
                     </div>
-                    {/* Grid row */}
                 </div>
-            </section>
-            <hr/>
-            <section className='d-flex justify-content-between p-3'>
-                {/* Copyright */}
-                <div className="text-center" >
+            </div>
+            <hr />
+            <div className='footerExtra'>
+                <div className='text-center '>
+                    <i className="fab fa-facebook-f iconFooter iconSize" />
+                    <i className="fab fa-twitter iconFooter iconSize" />
+                    <i className="fab fa-google iconFooter iconSize" />
+                    <i className="fab fa-instagram iconFooter iconSize" />
+                    <i className="fab fa-linkedin iconFooter iconSize" />
+                    <i className="fab fa-github iconFooter iconSize" />
+                </div>
+                <div className="text-center mt-3" >
                     © 2023 Copyright. All rights reserved.
-                    <a className="text-white" href="https://github.com/huypham0808/E_learning_Project">By Huy Pham</a>
+                    <a className="text-dark" href="https://github.com/huypham0808/E_learning_Project">By Huy Pham</a>
                 </div>
-                {/* Right */}
-                <div className='align-items-center '>
-                    <a href className="d-flex text-white align-middle rounded-circle d-inline-block align-items-center text-center" style={{background:"#6351ce", width:"40px", height:"40px"}}>
-                        <i className="fab fa-facebook-f " />
-                    </a>
-                    <a href className="text-white me-4 ml-3">
-                        <i className="fab fa-twitter" />
-                    </a>
-                    <a href className="text-white me-4 ml-3">
-                        <i className="fab fa-google" />
-                    </a>
-                    <a href className="text-white me-4 ml-3">
-                        <i className="fab fa-instagram" />
-                    </a>
-                    <a href className="text-white me-4 ml-3">
-                        <i className="fab fa-linkedin" />
-                    </a>
-                    <a href className="text-white me- ml-3">
-                        <i className="fab fa-github" />
-                    </a>
-                </div>
-            </section>
+
+            </div>
         </footer>
     )
 };
