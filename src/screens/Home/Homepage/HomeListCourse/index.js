@@ -17,12 +17,12 @@ export default function HomeListCourse() {
         });
     };
     return (
-        <section>
+        <section className='courses'>
+            <div className='section-title'>
+                <h2>Khoá học</h2>
+                <p>Khoá học nổi bật</p>
+            </div>
             <div className='container'>
-                <div className='section-titel'>
-                    <h2>Khoa hoc</h2>
-                    <p>Khoa hoc noi bat</p>
-                </div>
                 <div className='row'>
                     {renderListCourse()}
                 </div>
