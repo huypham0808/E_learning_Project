@@ -1,7 +1,6 @@
 import React from 'react';
 import './style.css'
-//import { Link } from 'react-router-dom';
-//import InputformName from '../../../../components/Inputform';
+
 
 export default function Footer() {
     return (
