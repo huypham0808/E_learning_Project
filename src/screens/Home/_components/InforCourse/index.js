@@ -3,18 +3,18 @@ import '../../../../assets/style.css'
 
 export default function InforCourse() {
     return (
-        <div className='row inforCourseBox'>
-            <div className='inforCourseHome'>
+        <div className='inforCourseBox w-100'>
+            <div className='inforCourseHome '>
                 <div className='inforItemHome inforLargeItem'>
                     <div className='inforItemContent'>
                         <h3>KHOÁ HỌC</h3>
                         <p><span>Học qua dự án thực tế,</span>học đi đôi với hành, không lý thuyết lan man, phân tích cội nguồn của vấn đề, xây dựng từ các ví dụ nhỏ đến thực thi một dự án lớn ngoài thực tế để học viên học xong làm được ngay</p>
                         <ul>
-                            <li>Hơn 1000 bài tập và dự án thực tế</li>
-                            <li>Hình ảnh, ví dụ, bài giảng sinh động trực quan</li>
-                            <li>Tư duy phân tích, giải quyết vấn đề trong dự án</li>
-                            <li>Học tập kinh nghiệm, qui trình làm dự án, các qui chuẩn trong dự án</li>
-                            <li>Cơ hội thực tập tại các công ty lớn như FPT, Microsoft</li>
+                            <li><i class="fa-solid fa-check fa-lg"></i> Hơn 1000 bài tập và dự án thực tế</li>
+                            <li><i class="fa-solid fa-check fa-lg"></i> Hình ảnh, ví dụ, bài giảng sinh động trực quan</li>
+                            <li><i class="fa-solid fa-check fa-lg"></i> Tư duy phân tích, giải quyết vấn đề trong dự án</li>
+                            <li><i class="fa-solid fa-check fa-lg"></i> Học tập kinh nghiệm, qui trình làm dự án, các qui chuẩn trong dự án</li>
+                            <li><i class="fa-solid fa-check fa-lg"></i> Cơ hội thực tập tại các công ty lớn như FPT, Microsoft</li>
                         </ul>
                     </div>
                 </div>

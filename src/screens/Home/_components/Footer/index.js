@@ -4,12 +4,12 @@ import './style.css'
 
 export default function Footer() {
     return (
-        <footer className='footerPage mt-5' style={{ background: "#f0f8ff" }}>
+        <footer className='footerPage mt-5 w-100' style={{ background: "#f0f8ff" }}>
             <div className="footerBody">
                 <div>
                     <div className='row textCardTitle'>
                         <div className="p-2 col-md-4 col-sm-6">
-                            <a href="" className='mr-5 textLogo'>
+                            <a href="/" className='mr-5 textLogo'>
                                 <span className='textE'>H </span>
                                 learning
                                 <i className='far fa-keyboard iconLogo'></i>

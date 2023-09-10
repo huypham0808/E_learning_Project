@@ -5,7 +5,7 @@ import './style.css'
 export default function CourseItem(props) {
     const { course } = props;
     return (
-        <div className='col-lg-4 col-md-6 d-flex align-items-center mt-5'>
+        <div className='col-lg-4 col-md-6 d-flex align-items-center mt-5 justify-content-center'>
             <div className='course-item card-container'>
                 <img src={course.hinhAnh} style={{ width: "100%", height: "250px", objectFit: "cover", objectPosition: "center" }} alt='img' />
                 <div className='course-content'>
