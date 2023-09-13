@@ -29,3 +29,32 @@ const actListCourseFail = (error) => ({
     type: actionTypes.COURSE_FAIL,
     payload: error,
 }); 
+
+//action Get Danh Muc Khoa Hoc 
+export const fetchCourseCate = () => {
+    return (dispatch) => {
+        dispatch(actCourseCateRequest());
+        api.get("QuanLyKhoaHoc/LayDanhMucKhoaHoc").then((result) => {
+            dispatch(actCourseCateSuccess(result.data));
+        })
+        .catch((error) => dispatch(actCourseCateFail(error)));
+    }
+};
+
+const actCourseCateRequest = () => (
+    {
+        type: actionTypes.COURSE_CATE_REQUEST, 
+    }
+);
+const actCourseCateSuccess = (data) => (
+    {
+        type: actionTypes.COURSE_CATE_SUCCESS,
+        payload: data,
+    }
+);
+const actCourseCateFail = (error) => (
+    {
+        type: actionTypes.COURSE_CATE_FAIL,
+        payload: error,
+    }
+);

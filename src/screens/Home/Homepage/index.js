@@ -3,6 +3,8 @@ import Carousel from '../_components/CarouselKhoaHoc';
 import InforCourse from '../_components/InforCourse';
 import HomeListCourse from './HomeListCourse';
 import CounterHome from '../_components/Counter';
+import Trainers from './HomeListInstructor';
+import CommentFromUser from './CommentFromUser';
 
 
 
@@ -13,6 +15,8 @@ export default function Homepage() {
             <InforCourse />
             <HomeListCourse/>
             <CounterHome/>
+            <Trainers/>
+            <CommentFromUser/>
         </div>
     )
 };
