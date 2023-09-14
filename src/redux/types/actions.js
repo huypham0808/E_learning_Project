@@ -58,3 +58,28 @@ const actCourseCateFail = (error) => (
         payload: error,
     }
 );
+//action Get Khoa hoc theo danh muc
+export const fetchCourseWithCate = (category) => {
+    return (dispatch) => {
+        dispatch(actCourseWithCateRequest());
+        api
+        .get(`QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=${category}&MaNhom=GP09`)
+        .then((result) => {
+            dispatch(actCourseWithCateSuccess(result.data));
+        })
+        .catch((error) => {
+            dispatch(actCourseWithCateFail(error));
+        })
+    }
+};
+const actCourseWithCateRequest = () => ({
+    type: actionTypes.GET_COURSE_WITH_CATEGORY_REQUEST,
+});
+const actCourseWithCateSuccess = (data) => ({
+    type: actionTypes.GET_COURSE_WITH_CATEGORY_SUCCESS,
+    payload: data,
+});
+const actCourseWithCateFail = (error) => ({
+    type: actionTypes.GET_COURSE_WITH_CATEGORY_FAIL,
+    payload: error,
+})
