@@ -40,6 +40,24 @@ const routes = [
             }
         ]
     },
+    {
+        path: "user",
+        element: lazy (()=> import("../screens/User")),
+        nested: [
+            {
+                path: "login",
+                element: lazy(() => import("../screens/User/Login")),
+            },
+            {
+                path: "register",
+                element: lazy(() => import("../screens/User/Register")),
+            },
+            {
+                path: "profile",
+                element: lazy(() => import("../screens/User/Profile")),
+            },
+        ]
+    },
 ];
 
 const renderRoutes = () => {
