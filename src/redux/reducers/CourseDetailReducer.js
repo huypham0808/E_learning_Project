@@ -1,24 +1,23 @@
-import * as actionTypes from "./../types/constants";
+import * as actionTypes from '../types/constants';
 
 const initialState = {
     loading: false,
     data: null,
     error: null,
 };
-
-const CourseWithCateReducer = (state = initialState, {type,payload}) => {
+const CourseDetailReducer = (state= initialState, {type, payload}) => {
     switch(type) {
-        case actionTypes.GET_COURSE_WITH_CATEGORY_REQUEST:
+        case actionTypes.GET_COURSE_DETAIL_REQUEST:
             state.loading = true;
             state.data = null;
             state.error = null;
             return {...state};
-        case actionTypes.GET_COURSE_WITH_CATEGORY_SUCCESS:
+        case actionTypes.GET_COURSE_DETAIL_SUCCESS:
             state.loading = false;
             state.data = payload;
             state.error = null;
             return {...state};
-        case actionTypes.GET_COURSE_WITH_CATEGORY_FAIL:
+        case actionTypes.GET_COURSE_DETAIL_FAIL:
             state.loading = false;
             state.data = null;
             state.error = payload;
@@ -26,5 +25,5 @@ const CourseWithCateReducer = (state = initialState, {type,payload}) => {
         default:
             return {...state};
     }
-};
-export default CourseWithCateReducer;
+}
+export default CourseDetailReducer;

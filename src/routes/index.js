@@ -34,6 +34,10 @@ const routes = [
                 path: "thongtin",
                 element: lazy(() => import("../screens/Home/Informations"))
             },
+            {
+                path: "chi-tiet-khoa-hoc/:maKhoaHoc",
+                element: lazy(() => import("../screens/Home/DeatailCourse"))
+            }
         ]
     },
 ];

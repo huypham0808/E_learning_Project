@@ -48,7 +48,7 @@ export default function Allcourse() {
           <h2>Khóa học</h2>
           <p>Tất cả khóa học</p>
         </div>
-        <div className='row'>
+        <div className='row container d-flex justify-content-center m-auto'>
           {renderCourse()}
         </div>
         <ul className='pagination justify-content-center mt-4'>
