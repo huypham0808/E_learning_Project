@@ -15,12 +15,12 @@ const routes = [
                 element: lazy(() => import("../screens/Home/Homepage"))
             },
             {
-                path: "danhmuc",
+                path: "danhmuc/:category",
                 element: lazy(() => import("../screens/Home/Danhmuc"))
             },
             {
                 path: "khoahoc",
-                element: lazy(() => import("../screens/Home/Course"))
+                element: lazy(() => import("../screens/Home/AllCourses"))
             },
             {
                 path: "blog",
@@ -34,6 +34,10 @@ const routes = [
                 path: "thongtin",
                 element: lazy(() => import("../screens/Home/Informations"))
             },
+            {
+                path: "chi-tiet-khoa-hoc/:maKhoaHoc",
+                element: lazy(() => import("../screens/Home/DeatailCourse"))
+            }
         ]
     },
 ];

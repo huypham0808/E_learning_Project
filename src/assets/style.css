@@ -28,7 +28,7 @@
 }
 
 .danhMucKhoaHoc {
-    margin-top: 120px;
+    margin-top: 150px;
 }
 
 .dropbtn {
@@ -152,4 +152,28 @@
 
 .inforSmallItemC {
     background-color: #63c0a8;
+}
+/* DETAIL PAGE */
+/* CSS for Course Detail Page */
+.course-details {
+    margin-top: 100px;
+    padding: 50px 0;
+}
+/*CSS for detail-course-discription*/
+.detail-content {
+    position: relative;
+    margin-bottom: 250px;
+}
+.detail-course-discription {
+    position: absolute;
+    top: 50px;
+    right: 120px;
+    width: 400px;
+}
+.detail-content .course-details .container .detail-course-title
+ {
+    margin-left: 50px;
+}
+div .discription-Course {
+    line-height: 2rem;
 }

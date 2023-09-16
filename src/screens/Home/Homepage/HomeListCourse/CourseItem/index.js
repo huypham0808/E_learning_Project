@@ -6,7 +6,7 @@ export default function CourseItem(props) {
     const { course } = props;
     return (
         <div className='col-lg-4 col-md-6 d-flex align-items-center mt-5 justify-content-center'>
-            <div className='course-item card-container'>
+            <Link to={`/chi-tiet-khoa-hoc/${course.maKhoaHoc}`} className='course-item card-container'>
                 <img src={course.hinhAnh} style={{ width: "100%", height: "250px", objectFit: "cover", objectPosition: "center" }} alt='img' />
                 <div className='course-content'>
                     <div className='d-flex justify-content-between align-items-center'>
@@ -22,7 +22,7 @@ export default function CourseItem(props) {
                         {course.moTa.length > 150 ? `${course.moTa.slice(0, 150)}...` : course.moTa}
                     </p>
                 </div>
-            </div>
+            </Link>
         </div>
 
     )

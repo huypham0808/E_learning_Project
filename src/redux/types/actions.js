@@ -34,7 +34,9 @@ const actListCourseFail = (error) => ({
 export const fetchCourseCate = () => {
     return (dispatch) => {
         dispatch(actCourseCateRequest());
-        api.get("QuanLyKhoaHoc/LayDanhMucKhoaHoc").then((result) => {
+        api
+        .get("QuanLyKhoaHoc/LayDanhMucKhoaHoc")
+        .then((result) => {
             dispatch(actCourseCateSuccess(result.data));
         })
         .catch((error) => dispatch(actCourseCateFail(error)));
@@ -58,3 +60,54 @@ const actCourseCateFail = (error) => (
         payload: error,
     }
 );
+//action Get Khoa hoc theo danh muc
+export const fetchCourseWithCate = (category) => {
+    return (dispatch) => {
+        dispatch(actCourseWithCateRequest());
+        api
+        .get(`QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=${category}&MaNhom=GP09`)
+        .then((result) => {
+            dispatch(actCourseWithCateSuccess(result.data));
+        })
+        .catch((error) => {
+            dispatch(actCourseWithCateFail(error));
+        })
+    }
+};
+const actCourseWithCateRequest = () => ({
+    type: actionTypes.GET_COURSE_WITH_CATEGORY_REQUEST,
+});
+const actCourseWithCateSuccess = (data) => ({
+    type: actionTypes.GET_COURSE_WITH_CATEGORY_SUCCESS,
+    payload: data,
+});
+const actCourseWithCateFail = (error) => ({
+    type: actionTypes.GET_COURSE_WITH_CATEGORY_FAIL,
+    payload: error,
+})
+//action Get Chi tiet khoa hoc
+export const fetchCourseDetail = (maKhoaHoc) => {
+    return (dispatch) => {
+        dispatch(actCourseDetailRequest());
+        api
+        .get(`QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${maKhoaHoc}`)
+        .then((result) => {
+            dispatch(actCourseDetailSuccess(result.data));
+        })
+        .catch((error) => {
+            dispatch(actCourseDetailFail(error));
+        })
+    };
+};
+
+const actCourseDetailRequest = () => ({
+    type: actionTypes.GET_COURSE_DETAIL_REQUEST,
+});
+const actCourseDetailSuccess = (data) => ({
+    type: actionTypes.GET_COURSE_DETAIL_SUCCESS,
+    payload: data,
+});
+const actCourseDetailFail = (error) => ({
+    type: actionTypes.GET_COURSE_DETAIL_FAIL,
+    payload: error,
+});

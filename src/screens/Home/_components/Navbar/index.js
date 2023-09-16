@@ -5,15 +5,17 @@ import { fetchCourseCate } from '../../../../redux/types/actions';
 import '../../../../assets/style.css'
 
 export default function Navbar() {
+    //useState useNavigate const navigate = useNavigate();
     const dispatch = useDispatch();
     const {data} = useSelector((state) => state.CourseCateReducer);
+    //const [keyWord, setKeyWord] = useState("");
 
     //Render Course Category
     const renderCourseCate = () => {
         return data?.map((category,index) => {
             return (
                 <li key={index}>
-                    <Link to={`/danhmuckhoahoc/${category.maDanhMuc}`}>{category.tenDanhMuc}</Link>
+                    <Link to={`/danhmuc/${category.maDanhMuc}`}>{category.tenDanhMuc}</Link>
                 </li>
             );
         })
@@ -41,15 +43,7 @@ export default function Navbar() {
                         </NavLink>
                         <ul className='dropdown-content' style={{left:0}}>
                             {renderCourseCate()}
-                        </ul>
-                        {/* <div className="dropdown-content" style={{ left: 0 }}>g
-                            <NavLink href="/" alt="/">LẬP TRÌNH BACKEND</NavLink>
-                            <NavLink href="/" alt="/">THIẾT KẾ WEB</NavLink>
-                            <NavLink href="/" alt="/">LẬP TRÌNH DI ĐỘNG</NavLink>
-                            <NavLink href="/" alt="/">LẬP TRÌNH FRONT END</NavLink>
-                            <NavLink href="/" alt="/">LẬP TRÌNH FULL STACK</NavLink>
-                            <NavLink href="/" alt="/">TƯ DUY LẬP TRÌNH</NavLink>
-                        </div> */}
+                        </ul>                      
                     </li>
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/khoahoc">
