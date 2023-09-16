@@ -16,3 +16,9 @@ export const GET_COURSE_WITH_CATEGORY_FAIL = `@@CourseWithCateReducer/GET_COURSE
 export const GET_COURSE_DETAIL_REQUEST = `@@CourseDetailReducer/GET_COURSE_DETAIL_REQUEST`;
 export const GET_COURSE_DETAIL_SUCCESS =`@@CourseDetailReducer/GET_COURSE_DETAIL_SUCCESS`;
 export const GET_COURSE_DETAIL_FAIL =`@@CourseDetailReducer/GET_COURSE_DETAIL_FAIL`;
+
+
+//REGISTER FORM
+export const REGISTER_REQUEST = `@@RegisterReducer/REGISTER_REQUEST`;
+export const REGISTER_SUCCESS = `@@RegisterReducer/REGISTER_SUCCESS`;
+export const REGISTER_FAIL = `@@RegisterReducer/REGISTER_FAIL`;

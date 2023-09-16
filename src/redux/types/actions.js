@@ -1,6 +1,7 @@
 import api from "../../utils/apiUtil";
 import * as actionTypes from './constants';
-
+import Swal from "sweetalert2";
+//------------------------------
 //action get List of Course
 export const fetchListCourse = (keyword = "") => {
     return (dispatch) => {
@@ -109,5 +110,47 @@ const actCourseDetailSuccess = (data) => ({
 });
 const actCourseDetailFail = (error) => ({
     type: actionTypes.GET_COURSE_DETAIL_FAIL,
+    payload: error,
+});
+
+//action Dang ky (Register)
+export const actRegister = (data, navigate) => {
+    return (dispatch) => {
+        dispatch(actRegisterRequest());
+
+        api
+        .post("QuanLyNguoiDung/DangKy",data)
+        .then((result)=> {
+            dispatch(actRegisterSuccess(result.data));
+            Swal.fire({
+                icon: "success",
+                title:"Đăng ký thành công",
+                showConfirmButton: false,
+                timer: 1500, 
+            }).then(()=>{
+                navigate("/user/login", {replace: true});
+            });
+        })
+        .catch((error)=> {
+            dispatch(actRegisterFail(error));
+            Swal.fire({
+                icon: "error",
+                title: "Đăng ký không thành công!",
+                text: error.response?.data,
+                showConfirmButton: false,
+                timer:1500,
+            });
+        });
+    };
+};
+const actRegisterRequest = () => ({
+    type: actionTypes.REGISTER_REQUEST,
+});
+const actRegisterSuccess = (data) => ({
+    type: actionTypes.REGISTER_SUCCESS,
+    payload: data,
+});
+const actRegisterFail = (error) => ({
+    type: actionTypes.REGISTER_FAIL,
     payload: error,
 });
