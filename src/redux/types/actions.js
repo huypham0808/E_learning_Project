@@ -1,6 +1,8 @@
 import api from "../../utils/apiUtil";
 import * as actionTypes from './constants';
 import Swal from "sweetalert2";
+
+
 //------------------------------
 //action get List of Course
 export const fetchListCourse = (keyword = "") => {
@@ -154,3 +156,180 @@ const actRegisterFail = (error) => ({
     type: actionTypes.REGISTER_FAIL,
     payload: error,
 });
+
+//action Get User Detail
+export const getUserDetail = () => {
+    return (dispatch) => {
+        dispatch(actGetUserDetailRequest());
+
+        api
+        .post("QuanLyNguoiDung/ThongTinTaiKhoan")
+        .then((result) => {
+            dispatch(actGetUserDetailSuccess(result.data));
+        })
+        .catch((error) => 
+            dispatch(actGetUserDetailFail(error))
+        );
+    };
+};
+
+export const actGetUserDetailRequest = () => ({
+    type: actionTypes.GET_USER_DETAIL_REQUEST,
+});
+export const actGetUserDetailSuccess = (data) => ({
+    type: actionTypes.GET_COURSE_DETAIL_SUCCESS,
+    payload: data,
+});
+export const actGetUserDetailFail = (error) => ({
+    type: actionTypes.GET_COURSE_DETAIL_FAIL,
+    payload: error,
+});
+
+//action User Login
+const TIME_EXPIRE = 60 * 60 * 1000;
+export const actLogin = (data, navigate) => {
+    return (dispatch) => {
+        dispatch(actUserLoginRequest());
+
+        api
+        .post("QuanLyNguoiDung/DangNhap", data)
+        .then((result) => {
+            dispatch(actUserLoginSuccess(result.data));
+            localStorage.setItem("user", JSON.stringify(result.data));
+
+            //Tự động đăng xuất
+            const TIME = new Date().getTime();
+            const EXPIRE = TIME + TIME_EXPIRE;
+            localStorage.setItem("EXPIRE", EXPIRE);
+            dispatch(actTimeoutLogOut(navigate, TIME_EXPIRE));
+
+            Swal.fire({
+                icon:"success",
+                title: "Đăng nhập thành công",
+                showConfirmButton: false,
+                timer: 1500,
+            }).then(()=> navigate("/", {replace: true}));
+        })
+        .catch((error) => {
+            dispatch(actUserLoginFail(error));
+            Swal.fire({
+                icon: "error",
+                title: "Đăng nhập không thành công",
+                text: error.response?.data, 
+                showConfirmButton: false,
+                timer: 1500, 
+            })
+        })
+    }
+};
+
+const actUserLoginRequest = () => ({
+    type: actionTypes.USER_LOGIN_REQUEST
+});
+const actUserLoginSuccess = (data) => ({
+    type: actionTypes.USER_LOGIN_SUCCESS,
+    payload: data,
+});
+const actUserLoginFail = (error) => ({
+    type: actionTypes.USER_LOGIN_FAIL,
+    payload: error,
+});
+
+const actTimeoutLogOut = (navigate, expire) => {
+    return (dispatch) => {
+        setTimeout(() => {
+            dispatch(actLogOut(navigate));
+        }, expire);
+    };
+};
+export const actLogOut = (navigate) => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("EXPIRE");
+    navigate("/user/login", {replace: true});
+    return {
+        type: actionTypes.USER_LOGIN_CLEAN,
+    };
+};
+export const actTryLogout = (navigate) => {
+    return (dispatch)=> {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if(!user) return;
+        const EXPIRE = localStorage.getItem("EXPIRE");
+        const TIME = new Date().getTime();
+        if( TIME > EXPIRE) {
+            dispatch(actLogOut(navigate));
+            return;
+        }
+        dispatch(actTimeoutLogOut(navigate,EXPIRE - TIME));
+        dispatch(actUserLoginSuccess(user));
+    };
+};
+
+
+//action Cancel Course
+export const CancelCourse = (data) => {
+    return (dispatch) => {
+        dispatch(actCancelCourseRequest());
+
+        api
+        .post("QuanLyKhoaHoc/HuyGhiDanh", data)
+        .then((result)=> {
+            dispatch(actCancelCourseSuccess(result.data));
+            dispatch(getUserDetail());
+            Swal.fire("Thành công", "Hủy đăng ký thành công", "success");
+        })
+        .catch((error)=> {
+            dispatch(actCancelCourseFail(error));
+            Swal.fire("Thất bại", error.response?.data, "error");
+        });
+    }
+};
+
+const actCancelCourseRequest = ()=> ({
+    type: actionTypes.CANCEL_COURSE_REQUEST,
+});
+const actCancelCourseSuccess = (data) => ({
+    type: actionTypes.CANCEL_COURSE_SUCCESS,
+    payload: data,
+});
+const actCancelCourseFail = (error) => ({
+    type: actionTypes.CANCEL_COURSE_FAIL,
+    payload: error,
+});
+
+//action Update User
+export const actUpdateUser = (data) => {
+    return (dispatch) => {
+        dispatch(actUpdateUserRequest());
+
+        api
+        .put("QuanLyNguoiDung/CapNhatThongTinNguoiDung", data)
+        .then((result)=> {
+            dispatch(actUpdateUserSuccess(result.data));
+            Swal.fire({
+                icon:"success",
+                title: "Thành công",
+                text: "Cập nhật thành công",
+            }).then(() => window.location.reload());
+        })
+        .catch((error) => {
+            dispatch(actUpdateUserFail(error));
+            Swal.fire({
+                icon: "error",
+                title: error.response?.data,
+                text: "Cập nhật không thành công",
+            });
+        });
+    };
+};
+const actUpdateUserRequest = ()=> ({
+    type: actionTypes.UPDATE_USER_REQUEST,
+});
+const actUpdateUserSuccess =(data) => ({
+    type: actionTypes.UPDATE_USER_SUCCESS,
+    payload: data,
+});
+const actUpdateUserFail = (error) => ({
+    type: actionTypes.UPDATE_USER_FAIL,
+    payload: error,
+})

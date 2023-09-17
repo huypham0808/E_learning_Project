@@ -86,14 +86,24 @@ export default function Register() {
                             <ErrorMessage name='email' component="div" style={{ color: "red" }} />
                         </div>
                         <div className="form-check">
-                            <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                            <label className="form-check-label" htmlFor="exampleCheck1">Gửi cho tôi các ưu đãi đặc biệt, đề xuất cá nhân hóa và bí quyết học tập</label>
+                            <input type="checkbox" className="form-check-input" checked={isCheck}
+                            onChange={handleCheck} />
+                            <small className="form-check-label text-muted text-center" htmlFor="exampleCheck1">Bằng việc đăng ký, bạn đồng ý với Điều khoản sử Chính sách về quyền riêng tư.</small>
                         </div>
-                        <button style={{ height: "40px", fontWeight: "500", fontSize: "18px" }} type="submit" className="btn btn-success w-100 mt-3">Đăng ký</button>
-                        <small id="emailHelp" class="form-text text-muted text-center">Bằng việc đăng ký, bạn đồng ý với Điều khoản sử Chính sách về quyền riêng tư.</small>
+                        <button style={{ height: "40px", fontWeight: "500", fontSize: "18px" }} type="submit" className="btn btn-success w-100 mt-3 btn-lg" disabled={!isCheck}>Đăng ký</button>
                     </Form>
                 )}
             </Formik>
+            <p className='my-2 pb-lg-2 text-center' style={{color:"#393f81"}}>
+                Đã có tài khoản ? {" "}
+                <Link to="/user/login" style={{color:"#393f81"}}>
+                    <span className='text-primary'>Đăng nhập</span>
+                </Link>
+                {" - "}
+                <Link to="/" style={{color:"#393f81"}}>
+                    <span className='text-danger'>Trang chủ</span>
+                </Link>
+            </p>
         </div>
     )
 }
