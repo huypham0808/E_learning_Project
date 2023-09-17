@@ -1,18 +1,19 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import {Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { fetchCourseCate } from '../../../../redux/types/actions';
+import { actLogOut } from '../../../../redux/types/actions';
 import '../../../../assets/style.css'
 
 export default function Navbar() {
-    //useState useNavigate const navigate = useNavigate();
+    const navigate = useNavigate()
     const dispatch = useDispatch();
-    const {data} = useSelector((state) => state.CourseCateReducer);
+    const { data } = useSelector((state) => state.CourseCateReducer);
     //const [keyWord, setKeyWord] = useState("");
 
     //Render Course Category
     const renderCourseCate = () => {
-        return data?.map((category,index) => {
+        return data?.map((category, index) => {
             return (
                 <li key={index}>
                     <Link to={`/danhmuc/${category.maDanhMuc}`}>{category.tenDanhMuc}</Link>
@@ -22,7 +23,65 @@ export default function Navbar() {
     };
     useEffect(() => {
         dispatch(fetchCourseCate());
-    },[]);
+    }, []);
+
+    const renderLogin = () => {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (!user) {
+            return (
+                <div>
+                    <Link to="/user/login" className="btn">Đăng nhập</Link>
+                    <Link to="/user/register" className="get-started-btn">Đăng ký</Link>
+                </div>
+            );
+        } else {
+            return (
+                <div className='btn-group'>
+                    <button
+                        type='button'
+                        className='btn btn-warning dropdown-toggle'
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        {user.taiKhoan}
+                    </button>
+                    <ul className='dropdown-menu'>
+                        {user.maLoaiNguoiDung === "GV" && (
+                            <>
+                                <li>
+                                    <Link
+                                        className="dropdown-item"
+                                        style={{ fontSize: 16 }}
+                                        to="/admin/courses"> Vào trang quản trị
+                                    </Link>
+                                </li>
+                                <li>
+                                    <hr className='dropdown-divider' />
+                                </li>
+                            </>
+                        )}
+                        <li>
+                            <Link
+                                className="dropdown-item"
+                                to="/user/profile"
+                                style={{ fontSize: 16 }}>
+                                Thông tin tài khoản
+                            </Link>
+                        </li>
+                        <li>
+                            <hr className='dropdown-divider'/>
+                        </li>
+                        <li>
+                            <button className='dropdown-item'
+                                style={{ fontSize: 16 }}
+                                onClick={() => dispatch(actLogOut(navigate))}>
+                                Đăng xuất
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            )
+        }
+    };
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light w-100 position-fixed fixed-top elearningNav">
             <NavLink className="navbar-brand align-items-center text-center" style={{ height: "100px" }} to="/">
@@ -41,9 +100,9 @@ export default function Navbar() {
                             <i class="fa-solid fa-bars mr-2"></i>
                             DANH MỤC
                         </NavLink>
-                        <ul className='dropdown-content' style={{left:0}}>
+                        <ul className='dropdown-content' style={{ left: 0 }}>
                             {renderCourseCate()}
-                        </ul>                      
+                        </ul>
                     </li>
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/khoahoc">
@@ -66,9 +125,7 @@ export default function Navbar() {
                         </NavLink>
                     </li>
                 </ul>
-                <div className='btn btn-warning text-white btnLogin'>
-                    ĐĂNG NHẬP
-                </div>
+                {renderLogin()}
             </div>
         </nav>
     )
