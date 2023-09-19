@@ -1,15 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { fetchCourseCate } from '../../../../redux/types/actions';
 import { actLogOut } from '../../../../redux/types/actions';
+import { Input } from 'antd';
 import '../../../../assets/style.css'
 
+const { Search } = Input;
 export default function Navbar() {
     const navigate = useNavigate()
     const dispatch = useDispatch();
     const { data } = useSelector((state) => state.CourseCateReducer);
-    //const [keyWord, setKeyWord] = useState("");
+    const [keyWord, setKeyWord] = useState("");
 
     //Render Course Category
     const renderCourseCate = () => {
@@ -25,6 +27,29 @@ export default function Navbar() {
         dispatch(fetchCourseCate());
     }, []);
 
+    const onSearch = (keyWord) => {
+        if (keyWord) {
+            navigate(`/search/${keyWord}`, { replace: true });
+            setKeyWord("");
+        }
+    }
+    //Handler Mobile Toggle 
+    const handleMobileToggle = () => {
+        const navbar = document.querySelector("#navbar");
+        const mobileNavToggle = document.querySelector(".mobile-toggle");
+        navbar.classList.toggle("navbar-mobile");
+        mobileNavToggle.classList.toggle("bars-list");
+        mobileNavToggle.classList.toggle("bars-x");
+    };
+    //Handle Dropdown Click 
+    const handleDropDownClick = (e) => {
+        const navbar = document.querySelector("#navbar");
+        const dropDown = e.currentTarget.nextElementSibling;
+        if (navbar.classList.contains("navbar-mobile")) {
+            e.preventDefault();
+            dropDown.classList.toggle("dropdown-active");
+        }
+    }
     const renderLogin = () => {
         const user = JSON.parse(localStorage.getItem("user"));
         if (!user) {
@@ -68,7 +93,7 @@ export default function Navbar() {
                             </Link>
                         </li>
                         <li>
-                            <hr className='dropdown-divider'/>
+                            <hr className='dropdown-divider' />
                         </li>
                         <li>
                             <button className='dropdown-item'
@@ -83,50 +108,41 @@ export default function Navbar() {
         }
     };
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light w-100 position-fixed fixed-top elearningNav">
-            <NavLink className="navbar-brand align-items-center text-center" style={{ height: "100px" }} to="/">
-                <img className='img-fluid' src="https://cdni.iconscout.com/illustration/premium/thumb/e-learning-4119535-3418176.png" alt='/'
-                    style={{ height: '100px', width: '100%', padding: 0 }}></img>
-            </NavLink>
-            <input className="form-control mr-sm-2 txtSearch" type="search" placeholder="Tìm kiếm" aria-label="Search" />
-
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon" />
-            </button>
-            <div className="collapse navbar-collapse w-50" id="navbarTogglerDemo01">
-                <ul className="navbar-nav mr-auto mt-2 mt-lg-0 w-100">
-                    <li className="nav-item dropdown mr-2">
-                        <NavLink className="nav-link dropbtn" to="/">
-                            <i class="fa-solid fa-bars mr-2"></i>
-                            DANH MỤC
-                        </NavLink>
-                        <ul className='dropdown-content' style={{ left: 0 }}>
-                            {renderCourseCate()}
-                        </ul>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/khoahoc">
-                            KHÓA HỌC
-                        </NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/blog">
-                            BLOG
-                        </NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/sukien">
-                            SỰ KIỆN
-                        </NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/thongtin">
-                            THÔNG TIN
-                        </NavLink>
-                    </li>
-                </ul>
+        <header id='header' className='fixed-top'>
+            <div className='container-fluid container-lg d-flex align-items-center justify-content-between'>
+                <h1 className='logo'>
+                    <Link to="/">H-learning</Link>
+                </h1>
+                <Search placeholder="Tìm kiếm khóa học" onChange={(e) => setKeyWord(e.target.value)}
+                    onSearch={onSearch}
+                    value={keyWord}
+                    style={{ width: 200 }} />
+                <nav id='navbar' className='navbar order-last order-xl-0'>
+                    <ul>
+                        <li className='dropdown'>
+                            <Link to="/" onClick={handleDropDownClick}>
+                                <span>DANH MỤC</span><i className="fa-solid fa-chevron-down"></i>
+                            </Link>
+                            <ul>{renderCourseCate()}</ul>
+                        </li>
+                        <li>
+                            <NavLink to="/khoahoc">KHÓA HỌC</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/blog">BLOG</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/sukien">SỰ KIỆN</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/thongtin">THÔNG TIN</NavLink>
+                        </li>
+                    </ul>
+                    <i className="fa-solid fa-bars bars-list mobile-toggle"
+                        onClick={handleMobileToggle}></i>
+                </nav>
                 {renderLogin()}
             </div>
-        </nav>
+        </header>
     )
 };
