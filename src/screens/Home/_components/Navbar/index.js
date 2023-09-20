@@ -18,7 +18,7 @@ export default function Navbar() {
         return data?.map((category, index) => {
             return (
                 <li key={index}>
-                    <Link to={`/danhmuc/${category.maDanhMuc}`}>{category.tenDanhMuc}</Link>
+                    <Link className="dropdown-item" to={`/danhmuc/${category.maDanhMuc}`}>{category.tenDanhMuc}</Link>
                 </li>
             );
         })
@@ -31,23 +31,6 @@ export default function Navbar() {
         if (keyWord) {
             navigate(`/search/${keyWord}`, { replace: true });
             setKeyWord("");
-        }
-    }
-    //Handler Mobile Toggle 
-    const handleMobileToggle = () => {
-        const navbar = document.querySelector("#navbar");
-        const mobileNavToggle = document.querySelector(".mobile-toggle");
-        navbar.classList.toggle("navbar-mobile");
-        mobileNavToggle.classList.toggle("bars-list");
-        mobileNavToggle.classList.toggle("bars-x");
-    };
-    //Handle Dropdown Click 
-    const handleDropDownClick = (e) => {
-        const navbar = document.querySelector("#navbar");
-        const dropDown = e.currentTarget.nextElementSibling;
-        if (navbar.classList.contains("navbar-mobile")) {
-            e.preventDefault();
-            dropDown.classList.toggle("dropdown-active");
         }
     }
     const renderLogin = () => {
@@ -63,10 +46,11 @@ export default function Navbar() {
             return (
                 <div className='btn-group'>
                     <button
-                        type='button'
-                        className='btn btn-warning dropdown-toggle'
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                        type="button"
+                        className="btn btn-success dropdown-toggle"
+                        data-toggle="dropdown"
+                        aria-expanded="false"
+                        >
                         {user.taiKhoan}
                     </button>
                     <ul className='dropdown-menu'>
@@ -76,7 +60,8 @@ export default function Navbar() {
                                     <Link
                                         className="dropdown-item"
                                         style={{ fontSize: 16 }}
-                                        to="/admin/courses"> Vào trang quản trị
+                                        to="/admin/courses"> 
+                                        Vào trang quản trị
                                     </Link>
                                 </li>
                                 <li>
@@ -87,13 +72,11 @@ export default function Navbar() {
                         <li>
                             <Link
                                 className="dropdown-item"
+                                style={{ fontSize: 16 }}
                                 to="/user/profile"
-                                style={{ fontSize: 16 }}>
+                                >
                                 Thông tin tài khoản
                             </Link>
-                        </li>
-                        <li>
-                            <hr className='dropdown-divider' />
                         </li>
                         <li>
                             <button className='dropdown-item'
@@ -108,41 +91,45 @@ export default function Navbar() {
         }
     };
     return (
-        <header id='header' className='fixed-top'>
-            <div className='container-fluid container-lg d-flex align-items-center justify-content-between'>
-                <h1 className='logo'>
-                    <Link to="/">H-learning</Link>
-                </h1>
-                <Search placeholder="Tìm kiếm khóa học" onChange={(e) => setKeyWord(e.target.value)}
-                    onSearch={onSearch}
-                    value={keyWord}
-                    style={{ width: 200 }} />
-                <nav id='navbar' className='navbar order-last order-xl-0'>
-                    <ul>
-                        <li className='dropdown'>
-                            <Link to="/" onClick={handleDropDownClick}>
-                                <span>DANH MỤC</span><i className="fa-solid fa-chevron-down"></i>
-                            </Link>
-                            <ul>{renderCourseCate()}</ul>
-                        </li>
-                        <li>
-                            <NavLink to="/khoahoc">KHÓA HỌC</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/blog">BLOG</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/sukien">SỰ KIỆN</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/thongtin">THÔNG TIN</NavLink>
-                        </li>
-                    </ul>
-                    <i className="fa-solid fa-bars bars-list mobile-toggle"
-                        onClick={handleMobileToggle}></i>
-                </nav>
+        <header className='fixed-top '>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light shadow">
+                <div className='container-fluid container-lg d-flex justify-content-between'>
+                    <Link to="/" className="navbar-brand" href="#" style={{ fontSize: "30px" }}>H-learning</Link>
+                    <Search placeholder="Tìm kiếm khóa học" onChange={(e) => setKeyWord(e.target.value)}
+                        onSearch={onSearch}
+                        value={keyWord}
+                        style={{ width: 200 }} />
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon" />
+                    </button>
+                    <div className="collapse navbar-collapse flex-grow-0" id="navbarNavDropdown">
+                        <ul className="navbar-nav elearning__CateList">
+                            <li className="nav-item dropdown active course_Cate_List">
+                                <Link to="/" className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    DANH MỤC
+                                </Link>
+                                <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    {renderCourseCate()}
+                                </div>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink to="/khoahoc" className="nav-link" href="#">KHOÁ HỌC <span className="sr-only">(current)</span></NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink to="/blog" className="nav-link" href="#">BLOG</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink to="/sukien" className="nav-link" href="#">SỰ KIỆN</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink to="/thongtin" className="nav-link" href="#">THÔNG TIN</NavLink>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                </div>
                 {renderLogin()}
-            </div>
+            </nav>
         </header>
     )
 };
