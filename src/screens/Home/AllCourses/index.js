@@ -3,6 +3,7 @@ import CourseItem from '../Homepage/HomeListCourse/CourseItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchListCourse } from '../../../redux/types/actions';
 import '../../../assets/style.css'
+import Loader from '../../../components/Loader';
 
 export default function Allcourse() {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ export default function Allcourse() {
   },[]);
 
   const renderCourse = () => {
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <Loader/>;
     return currentCourse?.map((course, index) => {
       return <CourseItem course={course} key={index} />
     })
