@@ -12,6 +12,7 @@ import CancelCourseReducer from '../../../redux/reducers/CancelCourseReducer';
 import { useNavigate } from 'react-router-dom';
 
 
+
 export default function Profile() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function Profile() {
     const [keyword, setKeyWord] = useState("");
     useEffect(() => {
         dispatch(actTryLogout(navigate));
-    })
+    },[])
     useEffect(() => {
         dispatch(getUserDetail());
     }, []);
@@ -107,7 +108,7 @@ export default function Profile() {
     };
     const handleSearchCourse = (e) => {
         setKeyWord(e.target.value);
-    }
+    };
 
     return (
         <section className='eLearning-profilePage'>

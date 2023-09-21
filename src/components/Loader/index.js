@@ -1,7 +1,7 @@
 import React from 'react'
-
+import './style.css'
 export default function Loader() {
   return (
-    <div>Loader</div>
+    <span class="loader"></span>
   )
-};
+}

@@ -35,11 +35,14 @@ export default function Navbar() {
     }
     const renderLogin = () => {
         const user = JSON.parse(localStorage.getItem("user"));
+        const handleLogout = (dispatch) => {
+            dispatch(actLogOut(navigate));
+        };
         if (!user) {
             return (
                 <div>
-                    <Link to="/user/login" className="btn">Đăng nhập</Link>
-                    <Link to="/user/register" className="get-started-btn">Đăng ký</Link>
+                    <Link to="/user/login" className="btn btn-outline-success mr-3">Đăng nhập</Link>
+                    <Link to="/user/register" className="btn btn-success">Đăng ký</Link>
                 </div>
             );
         } else {
@@ -50,7 +53,7 @@ export default function Navbar() {
                         className="btn btn-success dropdown-toggle"
                         data-toggle="dropdown"
                         aria-expanded="false"
-                        >
+                    >
                         {user.taiKhoan}
                     </button>
                     <ul className='dropdown-menu'>
@@ -60,7 +63,7 @@ export default function Navbar() {
                                     <Link
                                         className="dropdown-item"
                                         style={{ fontSize: 16 }}
-                                        to="/admin/courses"> 
+                                        to="/admin/courses">
                                         Vào trang quản trị
                                     </Link>
                                 </li>
@@ -74,14 +77,14 @@ export default function Navbar() {
                                 className="dropdown-item"
                                 style={{ fontSize: 16 }}
                                 to="/user/profile"
-                                >
+                            >
                                 Thông tin tài khoản
                             </Link>
                         </li>
                         <li>
                             <button className='dropdown-item'
                                 style={{ fontSize: 16 }}
-                                onClick={() => dispatch(actLogOut(navigate))}>
+                                onClick={() => handleLogout(dispatch)}>
                                 Đăng xuất
                             </button>
                         </li>
@@ -126,9 +129,9 @@ export default function Navbar() {
                             </li>
                         </ul>
                     </div>
-                    
+                    {renderLogin()}
                 </div>
-                {renderLogin()}
+
             </nav>
         </header>
     )
