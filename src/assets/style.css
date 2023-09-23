@@ -64,6 +64,8 @@ ul.elearning__CateList li a {
 
 
 /*---------------------- CSS for Course Infor ---------------------- */
+
+
 .inforCourseBox {
     padding: 50px 0;
 
@@ -114,6 +116,7 @@ ul.elearning__CateList li a {
     margin-top: 100px;
     padding: 50px 0;
 }
+/* CSS for List of Course at Home Page */
 
 /*CSS for detail-course-discription*/
 .detail-content {
@@ -148,4 +151,67 @@ div .discription-Course {
 /*LOGIN PAGE*/
 .elearning-Login_Page {
     margin-top: 100px;
+}
+
+/* CSS FOR EVENT PAGE  */
+.sliderEvent {
+    margin: 70px 0 auto;
+    width: 100%;
+    height: 70vh;
+    background-image: url('./img/Carousel_1.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.timeEvent {
+    position: relative;
+    z-index: 20;
+    padding: 200px 50px;
+    color: #fff;
+    text-transform: uppercase;
+}
+.events {
+    padding-right: 50px;
+}
+.events p {
+    text-align: center;
+    line-height: 30px;
+    font-size: 60px;
+    font-weight: 600;
+}
+.dayEvent {
+    color: yellow;
+}
+.hoursEvent {
+    color: orange;
+}
+.minuteEvent {
+    color: rgb(255, 87, 115);
+}
+.secondEvent {
+    color: rgb(240, 141, 240);
+}
+small {
+    font-weight: 500;
+}
+.events p small {
+    font-size: 20px;
+}
+.siderOverlay {
+    position: absolute;
+    background-color: #3333336d;
+    width: 100%;
+    height: 100%;
+}
+.timeEvent h4 {
+    font-size: 40px;
+    padding: 10px 0;
+    font-weight: 700;
+}
+.timeEvent h6 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.2;
 }

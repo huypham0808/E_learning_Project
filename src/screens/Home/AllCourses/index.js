@@ -33,7 +33,7 @@ export default function Allcourse() {
     const pagination = [];
     for (let i = 1; i < pageNumber; i++) {
       pagination.push(
-        <li key={i} className={i === currentPage ? "page-item-active" : "page-item"}>
+        <li key={i} className={i === currentPage ? "page-item active" : "page-item"}>
           <a className='page-link' href='#' onClick={() => paginate(i)}>
             {i}
           </a>
@@ -43,16 +43,16 @@ export default function Allcourse() {
     return pagination;
   };
   return (
-    <section className='coursePage'>
+    <section className='courses mt-5'>
       <div className='container'>
         <div className='section-title pt-5'>
           <h2>Khóa học</h2>
           <p>Tất cả khóa học</p>
         </div>
-        <div className='row container d-flex justify-content-center m-auto'>
+        <div className='row'>
           {renderCourse()}
         </div>
-        <ul className='pagination justify-content-center mt-4'>
+        <ul className='pagination justify-content-center mt-4 '>
           {renderPagination()}
         </ul>
       </div>

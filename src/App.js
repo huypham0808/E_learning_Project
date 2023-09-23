@@ -3,10 +3,11 @@ import { BrowserRouter, Routes } from 'react-router-dom';
 import './App.css'
 import renderRoutes from './routes';
 import { Suspense } from 'react';
+import Loader from './components/Loader';
 
 function App() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loader/>}>
       <BrowserRouter>
         <Routes>
           {renderRoutes()}
