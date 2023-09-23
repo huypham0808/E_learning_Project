@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
 import avarta from '../../../assets/img/avarta_elearning.jpg'
 import { Formik, ErrorMessage, Field, Form } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Navigate} from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { actTryLogout, getUserDetail, actUpdateUser } from '../../../redux/types/actions';
 import * as yup from "yup";
 import Swal from 'sweetalert2';
@@ -20,13 +18,13 @@ export default function Profile() {
     const [keyword, setKeyWord] = useState("");
     useEffect(() => {
         dispatch(actTryLogout(navigate));
-    },[])
+    }, [])
     useEffect(() => {
         dispatch(getUserDetail());
     }, []);
     if (!localStorage.getItem("user")) {
         return <Navigate replace to="/user/login" />
-    }
+    };
 
     const validationSchema = yup.object().shape({
         taiKhoan: yup
@@ -111,180 +109,165 @@ export default function Profile() {
     };
 
     return (
-        <section className='eLearning-profilePage'>
-            <div className='container'>
-                <Tabs
-                    defaultActiveKey={1}
-                    id="justify-tab-example"
-                    className="mb-3"
-                >
-                    <Tab eventKey={1} title="Thông tin cơ bản">
-                        <div className='container py-4'>
-                            <div className='main-body'>
-                                <div className='row'>
-                                    <div className='col-lg-4'>
-                                        <div className='card'>
-                                            <div className='card-body'>
-                                                <div className='d-flex flex-column align-items-center text-center'>
-                                                    <img src={avarta} alt='Avatar' className='rounded-circle p-1 bg-success' width={110}></img>
-                                                    <div className='mt-3'>
-                                                        <h4>{data?.hoTen}</h4>
-                                                        <p className='text-secondary mb-1'>
-                                                            {data?.maLoaiNguoiDung === "HV" ? "Học viên" : "Giáo viên"}
-                                                        </p>
-                                                    </div>
-                                                    <div className='d-flex'>
-                                                        <Link>
-                                                            <button className='btn btn-success mt-3'>
-                                                                Quay lại trang chủ
-                                                            </button>
-                                                        </Link>
-                                                        {data?.maLoaiNguoiDung === "GV" && (
-                                                            <Link to="/admin/courses">
-                                                                <button className='btn btn-info mt-3 ms-1'>
-                                                                    Vào trang quản trị
-                                                                </button>
-                                                            </Link>
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+        <div className='container py-5 mt-5'>
+            <div className='main-body'>
+                <div className='row'>
+                    <div className='col-lg-4'>
+                        <div className='card'>
+                            <div className='card-body'>
+                                <div className='d-flex flex-column align-items-center text-center'>
+                                    <img src={avarta}
+                                        alt='AvartaUser'
+                                        className='rounded-circle p-1 bg-success'
+                                        width={100}
+                                    />
+                                    <div className='mt-3'>
+                                        <h4>{data?.hoTen}</h4>
+                                        <p className='text-secondary mb-1'>
+                                            {data?.maLoaiNguoiDung === "HV" ? "Học viên" : "Giáo Vụ"}
+                                        </p>
                                     </div>
-                                    <div className='col-lg-8'>
-                                        <div className='card'>
-                                            <div className='card-body'>
-                                                <Formik
-                                                    enableReinitialize ={true}
-                                                    initialValues={{
-                                                        hoTen: data?.hoTen || "",
-                                                        taiKhoan: data?.taiKhoan || "",
-                                                        matKhau: data?.matKhau || "",
-                                                        soDT: data?.soDT || "",
-                                                        email: data?.email || "",
-                                                        maLoaiNguoiDung: data?.maLoaiNguoiDung || "",
-                                                        maNhom: data?.maNhom || "",
-                                                    }}
-                                                    validationSchema={validationSchema}
-                                                    onSubmit={(values) => {
-                                                        Swal.fire({
-                                                            icon: "question",
-                                                            title: "Xác nhận",
-                                                            text: "Bạn muốn cập nhật thông tin ?",
-                                                            showConfirmButton: true,
-                                                            showCancelButton: true,
-                                                            confirmButtonText: "Đồng ý",
-                                                            cancelButtonText: "Hủy bỏ",
-                                                        }).then((result) => {
-                                                            if (result.isConfirmed) {
-                                                                dispatch(actUpdateUser(values));
-                                                            }
-                                                        });
-                                                    }}>
-                                                    {() => (
-                                                        <Form>
-                                                            <div className='row mb-3'>
-                                                                <div className='col-sm-3'>
-                                                                    <h6>Tài khoản</h6>
-                                                                </div>
-                                                                <div className='col-sm-9 text-secondary'>
-                                                                    <Field type="text"
-                                                                        name="taiKhoan"
-                                                                        className="form-control"
-                                                                        disabled />
-                                                                    <ErrorMessage name='taiKhoan'
-                                                                        component="div"
-                                                                        style={{ color: "red" }}
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                            <div className='row mb-3'>
-                                                                <div className='col-sm-3'>
-                                                                    <h6>Mật khẩu</h6>
-                                                                </div>
-                                                                <div className='col-sm-9 text-secondary'>
-                                                                    <Field type="password"
-                                                                        name="matKhau"
-                                                                        className="form-control"
-                                                                        disabled />
-                                                                    <ErrorMessage name='matKhau'
-                                                                        component="div"
-                                                                        style={{ color: "red" }}
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                            <div className='row mb-3'>
-                                                                <div className='col-sm-3'>
-                                                                    <h6>Họ tên</h6>
-                                                                </div>
-                                                                <div className='col-sm-9 text-secondary'>
-                                                                    <Field type="text"
-                                                                        name="hoTen"
-                                                                        className="form-control"
-                                                                        disabled />
-                                                                    <ErrorMessage name='hoTen'
-                                                                        component="div"
-                                                                        style={{ color: "red" }}
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                            <div className='row mb-3'>
-                                                                <div className='col-sm-3'>
-                                                                    <h6>Số điện thoại</h6>
-                                                                </div>
-                                                                <div className='col-sm-9 text-secondary'>
-                                                                    <Field type="text"
-                                                                        name="soDT"
-                                                                        className="form-control"
-                                                                        disabled />
-                                                                    <ErrorMessage name='soDT'
-                                                                        component="div"
-                                                                        style={{ color: "red" }}
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                            <div className='row mb-3'>
-                                                                <div className='col-sm-3'>
-                                                                    <h6>Email</h6>
-                                                                </div>
-                                                                <div className='col-sm-9 text-secondary'>
-                                                                    <Field type="text"
-                                                                        name="email"
-                                                                        className="form-control"
-                                                                        disabled />
-                                                                    <ErrorMessage name='email'
-                                                                        component="div"
-                                                                        style={{ color: "red" }}
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                            <div className='row'>
-                                                                <div className='col-sm-3'></div>
-                                                                <div className='col-sm-9 text-secondary'>
-                                                                    <button className='btn btn-success px-3' type='submit'>
-                                                                        Lưu thông tin
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </Form>
-                                                    )}
-                                                </Formik>
-                                            </div>
-                                        </div>
+                                    <div className='d-flex'>
+                                        <Link to='/'>
+                                            <button className='btn btn-success mt-3'>
+                                                Về trang chủ
+                                            </button>
+                                        </Link>
+                                        {data?.maLoaiNguoiDung === "GV" && (
+                                            <Link to="/admin/courses">
+                                                <button className='btn btn-info mt-3'>
+                                                    Vào trang quản trị
+                                                </button>
+                                            </Link>
+                                        )}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </Tab>
-                    <Tab eventKey={2} title="Khóa học">
-                        Tab content for Profile
-                    </Tab>
-                    <Tab eventKey={3} title="Kỹ năng">
-                        Tab content for Loooonger Tab
-                    </Tab>
-
-                </Tabs>
+                    </div>
+                    <div className='col-lg-8'>
+                        <div className='card'>
+                            <div className='card-body'>
+                                <Formik enableReinitialize={true}
+                                    initialValues={{
+                                        hoTen: data?.hoTen || "",
+                                        taiKhoan: data?.taiKhoan || "",
+                                        matKhau: data?.matKhau || "",
+                                        soDT: data?.soDT || "",
+                                        email: data?.email || "",
+                                        maLoaiNguoiDung: data?.maLoaiNguoiDung || "",
+                                        maNhom: data?.maNhom || "",
+                                    }}
+                                    validationSchema={validationSchema}
+                                    onSubmit={(values) => {
+                                        Swal.fire({
+                                            icon: "question",
+                                            title: "Xác nhận",
+                                            text: "Bạn muốn cập nhật thông tin tài khoản ?",
+                                            showConfirmButton: true,
+                                            showCancelButton: true,
+                                            confirmButtonText: "Đồng ý",
+                                            cancelButtonText: "Hủy bỏ",
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                dispatch(actUpdateUser(values));
+                                            }
+                                        })
+                                    }}
+                                >
+                                    {() => (
+                                        <Form>
+                                            <div className='row mb-3'>
+                                                <div className='col-sm-3'>
+                                                    <h6>Tài khoản</h6>
+                                                </div>
+                                                <div className='col-sm-9 text-secondary'>
+                                                    <Field type="text"
+                                                        name="taiKhoan"
+                                                        className="form-control"
+                                                        disabled />
+                                                    <ErrorMessage name='taiKhoan'
+                                                        component="div"
+                                                        style={{ color: "red" }}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className='row mb-3'>
+                                                <div className='col-sm-3'>
+                                                    <h6 className='mb-0'>Mật khẩu</h6>
+                                                </div>
+                                                <div className='col-sm-9 text-secondary'>
+                                                    <Field type="password"
+                                                        name="matKhau"
+                                                        className="form-control"
+                                                        />
+                                                    <ErrorMessage name='matKhau'
+                                                        component="div"
+                                                        style={{ color: "red" }}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className='row mb-3'>
+                                                <div className='col-sm-3'>
+                                                    <h6>Họ tên</h6>
+                                                </div>
+                                                <div className='col-sm-9 text-secondary'>
+                                                    <Field type="text"
+                                                        name="hoTen"
+                                                        className="form-control"
+                                                         />
+                                                    <ErrorMessage name='hoTen'
+                                                        component="div"
+                                                        style={{ color: "red" }}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className='row mb-3'>
+                                                <div className='col-sm-3'>
+                                                    <h6>Số điện thoại</h6>
+                                                </div>
+                                                <div className='col-sm-9 text-secondary'>
+                                                    <Field type="text"
+                                                        name="soDT"
+                                                        className="form-control"
+                                                        />
+                                                    <ErrorMessage name='soDT'
+                                                        component="div"
+                                                        style={{ color: "red" }}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className='row mb-3'>
+                                                <div className='col-sm-3'>
+                                                    <h6>Email</h6>
+                                                </div>
+                                                <div className='col-sm-9 text-secondary'>
+                                                    <Field type="text"
+                                                        name="email"
+                                                        className="form-control"
+                                                         />
+                                                    <ErrorMessage name='email'
+                                                        component="div"
+                                                        style={{ color: "red" }}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className='row'>
+                                                <div className='col-sm-3'></div>
+                                                <div className='col-sm-9 text-secondary'>
+                                                    <button className='btn btn-success px-3' type='submit'>
+                                                        Lưu thay đổi
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </Form>
+                                    )}
+                                </Formik>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
     )
 };

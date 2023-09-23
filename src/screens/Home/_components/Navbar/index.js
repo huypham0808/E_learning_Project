@@ -119,9 +119,6 @@ export default function Navbar() {
                                 <NavLink to="/khoahoc" className="nav-link" href="#">KHOÁ HỌC <span className="sr-only">(current)</span></NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="/blog" className="nav-link" href="#">BLOG</NavLink>
-                            </li>
-                            <li className="nav-item">
                                 <NavLink to="/sukien" className="nav-link" href="#">SỰ KIỆN</NavLink>
                             </li>
                             <li className="nav-item">

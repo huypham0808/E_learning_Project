@@ -1,9 +1,9 @@
 import React from 'react'
-
+import "animate.css";
 export default function Carousel() {
     return (
         <div className='wrapper sliderHome'>
-            <div className='carousel__Content'>
+            <div className='carousel__Content animate__animated animate__fadeInLeftBig'>
                 <h1 style={{fontWeight:700, fontSize:"48px"}}>Chào mừng</h1>
                 <h1 style={{fontWeight:700, fontSize:"48px"}}>đến với môi trường</h1>
                 <h1 className='textE' style={{fontWeight:700, fontSize:"60px"}}>H-<span style={{fontWeight:700, fontSize:"40px"}}>learning</span></h1>
