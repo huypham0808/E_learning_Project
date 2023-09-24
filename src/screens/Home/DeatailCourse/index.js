@@ -30,8 +30,10 @@ export default function DetailsCourse() {
                                 <i class="fa-solid fa-star text-warning ml-2"></i>
                                 <i class="fa-solid fa-star text-warning ml-2"></i>
                             </p>
-                            <p className='text-primary'>{data?.luotXem} học viên</p>
+
+                            <p className='text-primary'><i class="fa-solid fa-eye"></i>{data?.luotXem} lượt xem</p>
                         </div>
+                        <p className='my-3'>Đã có: <span className='text-primary'>{data?.soLuongHocVien} học viên</span></p>
                         <p className='my-3'>Được tạo bởi <span className='text-primary'>{data?.nguoiTao.hoTen}</span></p>
                         <p className='my-3'>Lần cập nhật gần đây nhất: <span className='text-primary'>{data?.ngayTao}</span></p>
                         <p className='mr-3'><i class="fa-solid fa-globe"></i> Vietnamess</p>
@@ -50,8 +52,11 @@ export default function DetailsCourse() {
                 }}></img>
                 <h2>đ 899.000</h2>
                 <div className='text-center my-3'>
-                    <button className='btn btn-success w-75'>Thêm vào giỏ hàng</button>
-                    <button className='btn btn-light w-75 my-3 border border-secondary'>Mua ngay</button>
+                    <button
+                        className='btn btn-danger w-75 my-3 border border-secondary'
+                        style={{height:"60px", fontSize:"25px"}}>
+                        Đăng ký ngay
+                    </button>
                     <p>Đảm bảo hoàn tiền trong 30 ngày</p>
 
                 </div>

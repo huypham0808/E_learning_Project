@@ -296,3 +296,7 @@ small {
     padding-right: 5px;  
     padding-top: 10px;
 }
+/* CSS FOR SEARCH PAGE */
+.searchPage {
+    margin-top: 50px;
+}

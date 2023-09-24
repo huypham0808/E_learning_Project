@@ -11,7 +11,7 @@ export default function Navbar() {
     const navigate = useNavigate()
     const dispatch = useDispatch();
     const { data } = useSelector((state) => state.CourseCateReducer);
-    const [keyWord, setKeyWord] = useState("");
+    const [keyword, setKeyWord] = useState("");
 
     //Render Course Category
     const renderCourseCate = () => {
@@ -27,9 +27,9 @@ export default function Navbar() {
         dispatch(fetchCourseCate());
     }, []);
 
-    const onSearch = (keyWord) => {
-        if (keyWord) {
-            navigate(`/search/${keyWord}`, { replace: true });
+    const onSearch = (keyword) => {
+        if (keyword) {
+            navigate(`/tim-kiem/${keyword}`, { replace: true });
             setKeyWord("");
         }
     }
@@ -100,7 +100,7 @@ export default function Navbar() {
                     <Link to="/" className="navbar-brand" href="#" style={{ fontSize: "30px" }}>H-learning</Link>
                     <Search placeholder="Tìm kiếm khóa học" onChange={(e) => setKeyWord(e.target.value)}
                         onSearch={onSearch}
-                        value={keyWord}
+                        value={keyword}
                         style={{ width: 200 }} />
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon" />
