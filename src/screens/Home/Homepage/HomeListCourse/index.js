@@ -29,7 +29,7 @@ export default function HomeListCourse() {
                     <h2>Khoá học</h2>
                     <p>Khoá học nổi bật</p>
                 </div>
-                <div className='row'  data-aos="fade-up">
+                <div className='row' data-aos="fade-up">
                     {renderListCourse()}
                 </div>
             </div>

@@ -11,7 +11,7 @@ export default function CourseItem(props) {
                 <div className='course-content'>
                     <div className='d-flex justify-content-between align-items-center'>
                         <h4>{course.danhMucKhoaHoc.tenDanhMucKhoaHoc}</h4>
-                        <p className='price'>$169</p>
+                        <p className='price'><i class="fa-solid fa-eye"></i> {course.luotXem}</p>
                     </div>
                     <h3>
                         <Link to={`/detail-course/${course.maKhoaHoc}`}>
