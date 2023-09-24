@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchListCourse } from '../../../redux/types/actions';
 import '../../../assets/style.css'
 import Loader from '../../../components/Loader';
+import Aos from 'aos';
 
 export default function Allcourse() {
   const dispatch = useDispatch();
@@ -16,10 +17,13 @@ export default function Allcourse() {
   const currentCourse = data?.slice(indexOfFirstCourse, indexOfLastCourse);
   useEffect(() => {
     dispatch(fetchListCourse());
-  },[]);
+  }, []);
 
+  useEffect(() => {
+    Aos.init({ duration: 3000 })
+  }, []);
   const renderCourse = () => {
-    if (loading) return <Loader/>;
+    if (loading) return <Loader />;
     return currentCourse?.map((course, index) => {
       return <CourseItem course={course} key={index} />
     })
@@ -49,7 +53,7 @@ export default function Allcourse() {
           <h2>Khóa học</h2>
           <p>Tất cả khóa học</p>
         </div>
-        <div className='row'>
+        <div className='row' data-aos="fade-up">
           {renderCourse()}
         </div>
         <ul className='pagination justify-content-center mt-4 '>
