@@ -62,6 +62,20 @@ const routes = [
             },
         ]
     },
+    {
+        path:"admin",
+        element:lazy(() => import("../screens/Admin/")),
+        nested: [
+            {
+                path: "course",
+                element: lazy(()=> import("../screens/Admin/Courses")),
+            },
+            {
+                path: "users",
+                element: lazy(()=> import("../screens/Admin/Users")),
+            },
+        ],
+    },
 ];
 
 const renderRoutes = () => {
