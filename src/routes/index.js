@@ -37,7 +37,11 @@ const routes = [
             {
                 path: "chi-tiet-khoa-hoc/:maKhoaHoc",
                 element: lazy(() => import("../screens/Home/DeatailCourse"))
-            }
+            },
+            {
+                path: "tim-kiem/:keyword",
+                element: lazy(() => import("../screens/Home/Searchpage"))
+            },
         ]
     },
 ];
