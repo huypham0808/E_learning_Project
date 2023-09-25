@@ -14,8 +14,8 @@ export const GET_COURSE_WITH_CATEGORY_FAIL = `@@CourseWithCateReducer/GET_COURSE
 
 //LAY CHI TIET KHOA HOC
 export const GET_COURSE_DETAIL_REQUEST = `@@CourseDetailReducer/GET_COURSE_DETAIL_REQUEST`;
-export const GET_COURSE_DETAIL_SUCCESS =`@@CourseDetailReducer/GET_COURSE_DETAIL_SUCCESS`;
-export const GET_COURSE_DETAIL_FAIL =`@@CourseDetailReducer/GET_COURSE_DETAIL_FAIL`;
+export const GET_COURSE_DETAIL_SUCCESS = `@@CourseDetailReducer/GET_COURSE_DETAIL_SUCCESS`;
+export const GET_COURSE_DETAIL_FAIL = `@@CourseDetailReducer/GET_COURSE_DETAIL_FAIL`;
 
 
 //REGISTER FORM
@@ -41,5 +41,29 @@ export const UPDATE_USER_REQUEST = `@@UpdateUserReducer/UPDATE_USER_REQUEST`;
 export const UPDATE_USER_SUCCESS = `@@UpdateUserReducer/UPDATE_USER_SUCCESS`;
 export const UPDATE_USER_FAIL = `@@UpdateUserReducer/UPDATE_USER_FAIL`;
 
-// ADMIN PAGE 
+// -------------------------------------------------ADMIN PAGE -----------------------------------------------------
 // GET LIST USER
+export const GET_LIST_USER_REQUEST = "@@ListUserReducer/GET_LIST_USER_REQUEST";
+export const GET_LIST_USER_SUCCESS = "@@ListUserReducer/GET_LIST_USER_SUCCESS";
+export const GET_LIST_USER_FAIL = "@@ListUserReducer/GET_LIST_USER_FAIL";
+// ADD USER -- ADMIN PAGE
+export const ADD_USER_REQUEST = "@@AddUserReducer/ADD_USER_REQUEST";
+export const ADD_USER_SUCCESS = "@@AddUserReducer/ADD_USER_SUCCESS";
+export const ADD_USER_FAIL = "@@AddUserReducer/ADD_USER_FAIL";
+// DELET USER -- ADMIN PAGE
+export const DELETE_USER_REQUEST = "@@DeleteUserReducer/DELETE_USER_REQUEST";
+export const DELETE_USER_SUCCESS = "@@DeleteUserReducer/DELETE_USER_SUCCESS";
+export const DELETE_USER_FAIL = "@@DeleteUserReducer/DELETE_USER_FAIL";
+// ADD COURSE - ADMIN
+export const ADD_COURSE_REQUEST = "@@AddCourseReducer/ADD_COURSE_REQUEST";
+export const ADD_COURSE_SUCCESS = "@@AddCourseReducer/ADD_COURSE_SUCCESS";
+export const ADD_COURSE_FAIL = "@@AddCourseReducer/ADD_COURSE_FAIL";
+//DELETE COURSE - ADMIN
+export const DELETE_COURSE_REQUEST ="@@DeleteCourseReducer/DELETE_COURSE_REQUEST";
+export const DELETE_COURSE_SUCCESS ="@@DeleteCourseReducer/DELETE_COURSE_SUCCESS";
+export const DELETE_COURSE_FAIL = "@@DeleteCourseReducer/DELETE_COURSE_FAIL";
+//UPDATE COURSE - ADMIN
+export const UPDATE_COURSE_REQUEST ="@@UpdateCourseReducer/UPDATE_COURSE_REQUEST";
+export const UPDATE_COURSE_SUCCESS ="@@UpdateCourseReducer/UPDATE_COURSE_SUCCESS";
+export const UPDATE_COURSE_FAIL = "@@UpdateCourseReducer/UPDATE_COURSE_FAIL";
+

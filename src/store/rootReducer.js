@@ -8,7 +8,12 @@ import UserReducer from "../redux/reducers/UserReducer";
 import UserLoginReducer from "../redux/reducers/UserLoginReducer";
 import CancelCourseReducer from "../redux/reducers/CancelCourseReducer";
 import UpdateUserReducer from "../redux/reducers/UpdateUserReducer";
-
+import ListUserReducer from "../redux/reducers/ListUserReducer";
+import AddUserReducer from "../redux/reducers/AddUserReducer";
+import DeleteUserReducer from "../redux/reducers/DeleteUserReducer";
+import AddCourseReducer from "../redux/reducers/AddCourseReducer";
+import DeleteCourseReducer from "../redux/reducers/DeleteCourseReducer";
+import UpdateCourseReducer from "../redux/reducers/UpdateCourseReducer";
 
 const rootReducer = combineReducers(
     {
@@ -21,6 +26,12 @@ const rootReducer = combineReducers(
         UserLoginReducer,
         CancelCourseReducer,
         UpdateUserReducer,
+        ListUserReducer,
+        AddUserReducer,
+        DeleteUserReducer,
+        AddCourseReducer,
+        DeleteCourseReducer,
+        UpdateCourseReducer
     }
 );
 export default rootReducer;
