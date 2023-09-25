@@ -31,24 +31,24 @@ const actListCourseSuccess = (data) => ({
 const actListCourseFail = (error) => ({
     type: actionTypes.COURSE_FAIL,
     payload: error,
-}); 
+});
 
 //action Get Danh Muc Khoa Hoc 
 export const fetchCourseCate = () => {
     return (dispatch) => {
         dispatch(actCourseCateRequest());
         api
-        .get("QuanLyKhoaHoc/LayDanhMucKhoaHoc")
-        .then((result) => {
-            dispatch(actCourseCateSuccess(result.data));
-        })
-        .catch((error) => dispatch(actCourseCateFail(error)));
+            .get("QuanLyKhoaHoc/LayDanhMucKhoaHoc")
+            .then((result) => {
+                dispatch(actCourseCateSuccess(result.data));
+            })
+            .catch((error) => dispatch(actCourseCateFail(error)));
     }
 };
 
 const actCourseCateRequest = () => (
     {
-        type: actionTypes.COURSE_CATE_REQUEST, 
+        type: actionTypes.COURSE_CATE_REQUEST,
     }
 );
 const actCourseCateSuccess = (data) => (
@@ -68,13 +68,13 @@ export const fetchCourseWithCate = (category) => {
     return (dispatch) => {
         dispatch(actCourseWithCateRequest());
         api
-        .get(`QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=${category}&MaNhom=GP09`)
-        .then((result) => {
-            dispatch(actCourseWithCateSuccess(result.data));
-        })
-        .catch((error) => {
-            dispatch(actCourseWithCateFail(error));
-        })
+            .get(`QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=${category}&MaNhom=GP09`)
+            .then((result) => {
+                dispatch(actCourseWithCateSuccess(result.data));
+            })
+            .catch((error) => {
+                dispatch(actCourseWithCateFail(error));
+            })
     }
 };
 const actCourseWithCateRequest = () => ({
@@ -93,13 +93,13 @@ export const fetchCourseDetail = (maKhoaHoc) => {
     return (dispatch) => {
         dispatch(actCourseDetailRequest());
         api
-        .get(`QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${maKhoaHoc}`)
-        .then((result) => {
-            dispatch(actCourseDetailSuccess(result.data));
-        })
-        .catch((error) => {
-            dispatch(actCourseDetailFail(error));
-        })
+            .get(`QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${maKhoaHoc}`)
+            .then((result) => {
+                dispatch(actCourseDetailSuccess(result.data));
+            })
+            .catch((error) => {
+                dispatch(actCourseDetailFail(error));
+            })
     };
 };
 
@@ -121,28 +121,28 @@ export const actRegister = (data, navigate) => {
         dispatch(actRegisterRequest());
 
         api
-        .post("QuanLyNguoiDung/DangKy",data)
-        .then((result)=> {
-            dispatch(actRegisterSuccess(result.data));
-            Swal.fire({
-                icon: "success",
-                title:"Đăng ký thành công",
-                showConfirmButton: false,
-                timer: 1500, 
-            }).then(()=>{
-                navigate("/user/login", {replace: true});
+            .post("QuanLyNguoiDung/DangKy", data)
+            .then((result) => {
+                dispatch(actRegisterSuccess(result.data));
+                Swal.fire({
+                    icon: "success",
+                    title: "Đăng ký thành công",
+                    showConfirmButton: false,
+                    timer: 1500,
+                }).then(() => {
+                    navigate("/user/login", { replace: true });
+                });
+            })
+            .catch((error) => {
+                dispatch(actRegisterFail(error));
+                Swal.fire({
+                    icon: "error",
+                    title: "Đăng ký không thành công!",
+                    text: error.response?.data,
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
             });
-        })
-        .catch((error)=> {
-            dispatch(actRegisterFail(error));
-            Swal.fire({
-                icon: "error",
-                title: "Đăng ký không thành công!",
-                text: error.response?.data,
-                showConfirmButton: false,
-                timer:1500,
-            });
-        });
     };
 };
 const actRegisterRequest = () => ({
@@ -163,13 +163,13 @@ export const getUserDetail = () => {
         dispatch(actGetUserDetailRequest());
 
         api
-        .post("QuanLyNguoiDung/ThongTinTaiKhoan")
-        .then((result) => {
-            dispatch(actGetUserDetailSuccess(result.data));
-        })
-        .catch((error) => 
-            dispatch(actGetUserDetailFail(error))
-        );
+            .post("QuanLyNguoiDung/ThongTinTaiKhoan")
+            .then((result) => {
+                dispatch(actGetUserDetailSuccess(result.data));
+            })
+            .catch((error) =>
+                dispatch(actGetUserDetailFail(error))
+            );
     };
 };
 
@@ -192,34 +192,34 @@ export const actLogin = (data, navigate) => {
         dispatch(actUserLoginRequest());
 
         api
-        .post("QuanLyNguoiDung/DangNhap", data)
-        .then((result) => {
-            dispatch(actUserLoginSuccess(result.data));
-            localStorage.setItem("user", JSON.stringify(result.data));
+            .post("QuanLyNguoiDung/DangNhap", data)
+            .then((result) => {
+                dispatch(actUserLoginSuccess(result.data));
+                localStorage.setItem("user", JSON.stringify(result.data));
 
-            //Tự động đăng xuất
-            const TIME = new Date().getTime();
-            const EXPIRE = TIME + TIME_EXPIRE;
-            localStorage.setItem("EXPIRE", EXPIRE);
-            dispatch(actTimeoutLogOut(navigate, TIME_EXPIRE));
+                //Tự động đăng xuất
+                const TIME = new Date().getTime();
+                const EXPIRE = TIME + TIME_EXPIRE;
+                localStorage.setItem("EXPIRE", EXPIRE);
+                dispatch(actTimeoutLogOut(navigate, TIME_EXPIRE));
 
-            Swal.fire({
-                icon:"success",
-                title: "Đăng nhập thành công",
-                showConfirmButton: false,
-                timer: 1500,
-            }).then(()=> navigate("/", {replace: true}));
-        })
-        .catch((error) => {
-            dispatch(actUserLoginFail(error));
-            Swal.fire({
-                icon: "error",
-                title: "Đăng nhập không thành công",
-                text: error.response?.data, 
-                showConfirmButton: false,
-                timer: 1500, 
+                Swal.fire({
+                    icon: "success",
+                    title: "Đăng nhập thành công",
+                    showConfirmButton: false,
+                    timer: 1500,
+                }).then(() => navigate("/", { replace: true }));
             })
-        })
+            .catch((error) => {
+                dispatch(actUserLoginFail(error));
+                Swal.fire({
+                    icon: "error",
+                    title: "Đăng nhập không thành công",
+                    text: error.response?.data,
+                    showConfirmButton: false,
+                    timer: 1500,
+                })
+            })
     }
 };
 
@@ -245,22 +245,22 @@ const actTimeoutLogOut = (navigate, expire) => {
 export const actLogOut = (navigate) => {
     localStorage.removeItem("user");
     localStorage.removeItem("EXPIRE");
-    navigate("/user/login", {replace: true});
+    navigate("/user/login", { replace: true });
     return {
         type: actionTypes.USER_LOGIN_CLEAN,
     };
 };
 export const actTryLogout = (navigate) => {
-    return (dispatch)=> {
+    return (dispatch) => {
         const user = JSON.parse(localStorage.getItem("user"));
-        if(!user) return;
+        if (!user) return;
         const EXPIRE = localStorage.getItem("EXPIRE");
         const TIME = new Date().getTime();
-        if( TIME > EXPIRE) {
+        if (TIME > EXPIRE) {
             dispatch(actLogOut(navigate));
             return;
         }
-        dispatch(actTimeoutLogOut(navigate,EXPIRE - TIME));
+        dispatch(actTimeoutLogOut(navigate, EXPIRE - TIME));
         dispatch(actUserLoginSuccess(user));
     };
 };
@@ -272,20 +272,20 @@ export const CancelCourse = (data) => {
         dispatch(actCancelCourseRequest());
 
         api
-        .post("QuanLyKhoaHoc/HuyGhiDanh", data)
-        .then((result)=> {
-            dispatch(actCancelCourseSuccess(result.data));
-            dispatch(getUserDetail());
-            Swal.fire("Thành công", "Hủy đăng ký thành công", "success");
-        })
-        .catch((error)=> {
-            dispatch(actCancelCourseFail(error));
-            Swal.fire("Thất bại", error.response?.data, "error");
-        });
+            .post("QuanLyKhoaHoc/HuyGhiDanh", data)
+            .then((result) => {
+                dispatch(actCancelCourseSuccess(result.data));
+                dispatch(getUserDetail());
+                Swal.fire("Thành công", "Hủy đăng ký thành công", "success");
+            })
+            .catch((error) => {
+                dispatch(actCancelCourseFail(error));
+                Swal.fire("Thất bại", error.response?.data, "error");
+            });
     }
 };
 
-const actCancelCourseRequest = ()=> ({
+const actCancelCourseRequest = () => ({
     type: actionTypes.CANCEL_COURSE_REQUEST,
 });
 const actCancelCourseSuccess = (data) => ({
@@ -303,29 +303,29 @@ export const actUpdateUser = (data) => {
         dispatch(actUpdateUserRequest());
 
         api
-        .put("QuanLyNguoiDung/CapNhatThongTinNguoiDung", data)
-        .then((result)=> {
-            dispatch(actUpdateUserSuccess(result.data));
-            Swal.fire({
-                icon:"success",
-                title: "Thành công",
-                text: "Cập nhật thành công",
-            }).then(() => window.location.reload());
-        })
-        .catch((error) => {
-            dispatch(actUpdateUserFail(error));
-            Swal.fire({
-                icon: "error",
-                title: error.response?.data,
-                text: "Cập nhật không thành công",
+            .put("QuanLyNguoiDung/CapNhatThongTinNguoiDung", data)
+            .then((result) => {
+                dispatch(actUpdateUserSuccess(result.data));
+                Swal.fire({
+                    icon: "success",
+                    title: "Thành công",
+                    text: "Cập nhật thành công",
+                }).then(() => window.location.reload());
+            })
+            .catch((error) => {
+                dispatch(actUpdateUserFail(error));
+                Swal.fire({
+                    icon: "error",
+                    title: error.response?.data,
+                    text: "Cập nhật không thành công",
+                });
             });
-        });
     };
 };
-const actUpdateUserRequest = ()=> ({
+const actUpdateUserRequest = () => ({
     type: actionTypes.UPDATE_USER_REQUEST,
 });
-const actUpdateUserSuccess =(data) => ({
+const actUpdateUserSuccess = (data) => ({
     type: actionTypes.UPDATE_USER_SUCCESS,
     payload: data,
 });
@@ -333,3 +333,198 @@ const actUpdateUserFail = (error) => ({
     type: actionTypes.UPDATE_USER_FAIL,
     payload: error,
 })
+
+//--------------------------------------ADMIN PAGE-----------------------------------
+//GET LIST USER
+export const getListUsers = (keyword = "") => {
+    return (dispatch) => {
+        dispatch(getListUsersRequest());
+
+        const url = keyword
+            ? `QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP09&tuKhoa=${keyword}`
+            : "QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP09";
+
+        api
+            .get(url)
+            .then((result) => {
+                dispatch(getListUsersSuccess(result.data));
+            })
+            .catch((error) => dispatch(getListUsersFail(error)));
+    };
+};
+const getListUsersRequest = () => ({ type: actionTypes.GET_LIST_USER_REQUEST });
+const getListUsersSuccess = (data) => ({
+    type: actionTypes.GET_LIST_USER_SUCCESS,
+    payload: data,
+});
+const getListUsersFail = (error) => ({
+    type: actionTypes.GET_LIST_USER_FAIL,
+    payload: error,
+});
+// ADD USER 
+export const addUser = (data) => {
+    return (dispatch) => {
+        dispatch(addUserRequest());
+
+        api
+            .post("QuanLyNguoiDung/ThemNguoiDung", data)
+            .then((result) => {
+                dispatch(addUserSuccess(result.data));
+                Swal.fire({
+                    icon: "success",
+                    title: "Thành công",
+                    text: "Thêm người dùng thành công",
+                });
+            })
+            .catch((error) => {
+                dispatch(addUserFail(error));
+                Swal.fire({
+                    icon: "error",
+                    title: "Không thành công",
+                    text: error.response?.data,
+                });
+            });
+    };
+};
+const addUserRequest = () => ({ type: actionTypes.ADD_USER_REQUEST });
+const addUserSuccess = (data) => ({
+    type: actionTypes.ADD_USER_SUCCESS,
+    payload: data,
+});
+const addUserFail = (error) => ({
+    type: actionTypes.ADD_USER_FAIL,
+    payload: error,
+});
+//DELET USER
+export const deleteUser = (user) => {
+    return (dispatch) => {
+        dispatch(deleteUserRequest());
+
+        api
+            .delete(`QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${user}`)
+            .then((result) => {
+                dispatch(deleteUserSuccess(result.data));
+                Swal.fire({
+                    icon: "success",
+                    title: "Thành công",
+                    text: "Xóa người dùng thành công",
+                }).then(() => dispatch(getListUsers()));
+            })
+            .catch((error) => {
+                dispatch(deleteUserFail(error));
+                Swal.fire({
+                    icon: "error",
+                    title: "Xoá không thành công",
+                    text: error.response?.data,
+                });
+            });
+    };
+};
+const deleteUserRequest = () => ({ type: actionTypes.DELETE_USER_REQUEST });
+const deleteUserSuccess = (data) => ({
+    type: actionTypes.DELETE_USER_SUCCESS,
+    payload: data,
+});
+const deleteUserFail = (error) => ({
+    type: actionTypes.DELETE_USER_FAIL,
+    payload: error,
+});
+
+//ADMIN - CRUD COURSE
+//ADD COURSE
+export const addCourse = (formData) => {
+    return (dispatch) => {
+        dispatch(addCourseRequest());
+
+        api
+            .post("QuanLyKhoaHoc/ThemKhoaHocUploadHinh", formData)
+            .then((result) => {
+                dispatch(addCourseSuccess(result.data));
+                Swal.fire("Thành công", "Thêm khóa học thành công", "success");
+            })
+            .catch((error) => {
+                dispatch(addCourseFail(error));
+                Swal.fire("Thất bại", error.response?.data, "error");
+            });
+    };
+};
+const addCourseRequest = () => ({ type: actionTypes.ADD_COURSE_REQUEST });
+const addCourseSuccess = (data) => ({
+    type: actionTypes.ADD_COURSE_SUCCESS,
+    payload: data,
+});
+const addCourseFail = (error) => ({
+    type: actionTypes.ADD_COURSE_FAIL,
+    payload: error,
+});
+//DELETE COURSE
+export const deleteCourse = (maKhoaHoc) => {
+    return (dispatch) => {
+        dispatch(deleteCourseRequest());
+
+        api
+            .delete(`QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${maKhoaHoc}`)
+            .then((result) => {
+                dispatch(deleteCourseSuccess(result.data));
+                Swal.fire("Thành công", "Xóa khóa học thành công", "success").then(() =>
+                    dispatch(fetchListCourse()),
+                );
+            })
+            .catch((error) => {
+                dispatch(deleteCourseFail(error));
+                Swal.fire("Thất bại", error.response?.data, "error");
+            });
+    };
+};
+const deleteCourseRequest = () => ({ type: actionTypes.DELETE_COURSE_REQUEST });
+const deleteCourseSuccess = (data) => ({
+    type: actionTypes.DELETE_COURSE_SUCCESS,
+    payload: data,
+});
+const deleteCourseFail = (error) => ({
+    type: actionTypes.DELETE_COURSE_FAIL,
+    payload: error,
+});
+//UPDATE COURSE
+export const updateCourse = (formData) => {
+    return (dispatch) => {
+        dispatch(updateCourseRequest());
+        api
+            .post("QuanLyKhoaHoc/CapNhatKhoaHocUpload", formData)
+            .then((result) => {
+                dispatch(updateCourseSuccess(result.data));
+                Swal.fire("Thành công", "Cập nhật khóa học thành công", "success");
+            })
+            .catch((error) => {
+                dispatch(updateCourseFail(error));
+                Swal.fire("Thất bại", error.response?.data, "error");
+            });
+    };
+};
+export const updateCourseNoImage = (values) => {
+    return (dispatch) => {
+        dispatch(updateCourseRequest());
+
+        api
+            .put("QuanLyKhoaHoc/CapNhatKhoaHoc", values)
+            .then((result) => {
+                dispatch(updateCourseSuccess(result.data));
+                Swal.fire("Thành công", "Cập nhật khóa học thành công", "success").then(
+                    () => window.location.reload(),
+                );
+            })
+            .catch((error) => {
+                dispatch(updateCourseFail(error));
+                Swal.fire("Thất bại", error.response?.data, "error");
+            });
+    };
+};
+const updateCourseRequest = () => ({ type: actionTypes.UPDATE_COURSE_REQUEST });
+const updateCourseSuccess = (data) => ({
+    type: actionTypes.UPDATE_COURSE_SUCCESS,
+    payload: data,
+});
+const updateCourseFail = (error) => ({
+    type: actionTypes.UPDATE_COURSE_FAIL,
+    payload: error,
+});

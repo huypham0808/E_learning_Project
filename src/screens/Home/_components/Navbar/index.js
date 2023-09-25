@@ -63,7 +63,7 @@ export default function Navbar() {
                                     <Link
                                         className="dropdown-item"
                                         style={{ fontSize: 16 }}
-                                        to="/admin/courses">
+                                        to="/admin">
                                         Vào trang quản trị
                                     </Link>
                                 </li>
