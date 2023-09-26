@@ -67,7 +67,7 @@ const routes = [
         element:lazy(() => import("../screens/Admin/")),
         nested: [
             {
-                path: "course",
+                path: "courses",
                 element: lazy(()=> import("../screens/Admin/Courses")),
             },
             {

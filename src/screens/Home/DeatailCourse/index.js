@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router-dom';
 import { fetchCourseDetail } from '../../../redux/types/actions';
+import { registerCourse } from '../../../redux/types/actions';
 import { Link } from 'react-router-dom/dist';
 
 
 export default function DetailsCourse() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { data } = useSelector((state) => state.CourseDetailReducer);
 
     const { maKhoaHoc } = useParams();
@@ -54,11 +56,22 @@ export default function DetailsCourse() {
                 <div className='text-center my-3'>
                     <button
                         className='btn btn-danger w-75 my-3 border border-secondary'
-                        style={{height:"60px", fontSize:"25px"}}>
+                        style={{ height: "60px", fontSize: "25px" }}
+                        onClick={() => {
+                            if (localStorage.getItem("user")) {
+                                const regInfo = {
+                                    taiKhoan: JSON.parse(localStorage.getItem("user")).taiKhoan,
+                                    maKhoaHoc,
+                                };
+                                dispatch(registerCourse(regInfo));
+                            } else {
+                                alert("Bạn cần phải đăng nhập trước.");
+                                navigate("/user/login", { replace: true });
+                            }
+                        }}>
                         Đăng ký ngay
                     </button>
                     <p>Đảm bảo hoàn tiền trong 30 ngày</p>
-
                 </div>
                 <h5 className='mb-3 ml-3'>Khóa học này bao gồm:</h5>
                 <ul className='ml-3'>

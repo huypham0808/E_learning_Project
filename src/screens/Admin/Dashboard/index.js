@@ -82,7 +82,7 @@ const Dashboard = () => {
                 </Link>
                 <Menu
                     theme="dark"
-                    defaultSelectedKeys={["1"]}
+                    defaultSelectedKeys={["2"]}
                     mode="inline"
                     items={items}
                 />
