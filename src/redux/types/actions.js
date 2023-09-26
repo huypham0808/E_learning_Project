@@ -156,7 +156,45 @@ const actRegisterFail = (error) => ({
     type: actionTypes.REGISTER_FAIL,
     payload: error,
 });
-
+//action RegisterCourse
+export const registerCourse = (data) => {
+    return (dispatch) => {
+      dispatch(actRegisterCourseRequest());
+  
+      api
+        .post("QuanLyKhoaHoc/DangKyKhoaHoc", data)
+        .then((result) => {
+          dispatch(actRegisterCourseSuccess(result.data));
+          Swal.fire({
+            icon: "success",
+            title: "Thành công",
+            text: "Đăng ký khóa học thành công",
+          });
+        })
+        .catch((error) => {
+          dispatch(actRegisterCourseFail(error));
+          Swal.fire({
+            icon: "error",
+            title: "Thất bại",
+            text: error.response?.data,
+          });
+        });
+    };
+  };
+  
+  const actRegisterCourseRequest = () => ({
+    type: actionTypes.REGISTER_COURSE_REQUEST,
+  });
+  
+  const actRegisterCourseSuccess = (data) => ({
+    type: actionTypes.REGISTER_COURSE_REQUEST,
+    payload: data,
+  });
+  
+  const actRegisterCourseFail = (error) => ({
+    type: actionTypes.REGISTER_COURSE_FAIL,
+    payload: error,
+  });
 //action Get User Detail
 export const getUserDetail = () => {
     return (dispatch) => {
@@ -526,5 +564,163 @@ const updateCourseSuccess = (data) => ({
 });
 const updateCourseFail = (error) => ({
     type: actionTypes.UPDATE_COURSE_FAIL,
+    payload: error,
+});
+
+//COURSE CONFIRM - ADMIN
+export const getCourseConfirm = (taiKhoan) => {
+    return (dispatch) => {
+        dispatch(courseConfirmRequest());
+        api
+            .post("QuanLyNguoiDung/LayDanhSachKhoaHocDaXetDuyet", taiKhoan)
+            .then((result) => {
+                dispatch(courseConfirmSuccess(result.data));
+            })
+            .catch((error) => {
+                dispatch(courseConfirmFail(error));
+            });
+    };
+};
+
+const courseConfirmRequest = () => ({
+    type: actionTypes.COURSES_CONFIRM_REQUEST,
+});
+
+const courseConfirmSuccess = (data) => ({
+    type: actionTypes.COURSES_CONFIRM_SUCCESS,
+    payload: data,
+});
+
+const courseConfirmFail = (error) => ({
+    type: actionTypes.COURSES_CONFIRM_FAIL,
+    payload: error,
+});
+//COURSE UNREG - ADMIN
+export const getCourseUnReg = (taiKhoan) => {
+    return (dispatch) => {
+        dispatch(getCourseUnRegRequest());
+
+        api
+            .post(
+                `QuanLyNguoiDung/LayDanhSachKhoaHocChuaGhiDanh?TaiKhoan=${taiKhoan}`,
+            )
+            .then((result) => {
+                dispatch(getCourseUnRegSuccess(result.data));
+            })
+            .catch((error) => {
+                dispatch(getCourseUnRegFail(error));
+            });
+    };
+};
+
+const getCourseUnRegRequest = () => ({
+    type: actionTypes.COURSES_UNREG_REQUEST,
+});
+
+const getCourseUnRegSuccess = (data) => ({
+    type: actionTypes.COURSES_UNREG_SUCCESS,
+    payload: data,
+});
+
+const getCourseUnRegFail = (error) => ({
+    type: actionTypes.COURSES_UNREG_FAIL,
+    payload: error,
+});
+//COURSE WAIT CONFIRM - ADMIN
+export const getCourseWaitConfirm = (taiKhoan) => {
+    return (dispatch) => {
+        dispatch(courseWaitConfirmRequest());
+
+        api
+            .post("QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet", taiKhoan)
+            .then((result) => {
+                dispatch(courseWaitConfirmSuccess(result.data));
+            })
+            .catch((error) => {
+                dispatch(courseWaitConfirmFail(error));
+            });
+    };
+};
+
+const courseWaitConfirmRequest = () => ({
+    type: actionTypes.COURSES_WAIT_CONFIRM_REQUEST,
+});
+
+const courseWaitConfirmSuccess = (data) => ({
+    type: actionTypes.COURSES_WAIT_CONFIRM_SUCCESS,
+    payload: data,
+});
+
+const courseWaitConfirmFail = (error) => ({
+    type: actionTypes.COURSES_WAIT_CONFIRM_FAIL,
+    payload: error,
+});
+
+//DELETE COURSE - ADMIN
+export const delCourseByAdmin = (data) => {
+    return (dispatch) => {
+        dispatch(delCourseByAdminRequest());
+
+        api
+            .post("QuanLyKhoaHoc/HuyGhiDanh", data)
+            .then((result) => {
+                dispatch(delCourseByAdminSuccess(result.data));
+                dispatch(getCourseUnReg(data.taiKhoan));
+                dispatch(getCourseWaitConfirm({ taiKhoan: data.taiKhoan }));
+                dispatch(getCourseConfirm({ taiKhoan: data.taiKhoan }));
+                Swal.fire("Thành công", "Hủy ghi danh thành công", "success");
+            })
+            .catch((error) => {
+                dispatch(delCourseByAdminFail(error));
+                Swal.fire("Thất bại", error.response?.data, "error");
+            });
+    };
+};
+
+const delCourseByAdminRequest = () => ({
+    type: actionTypes.DEL_COURSE_BY_ADMIN_REQUEST,
+});
+
+const delCourseByAdminSuccess = (data) => ({
+    type: actionTypes.DEL_COURSE_BY_ADMIN_SUCCESS,
+    payload: data,
+});
+
+const delCourseByAdminFail = (error) => ({
+    type: actionTypes.DEL_COURSE_BY_ADMIN_FAIL,
+    payload: error,
+});
+//REGISTER COURSE - ADMIN
+export const regCourseByAdmin = (data) => {
+    return (dispatch) => {
+        dispatch(regCourseByAdminRequest());
+
+        api
+            .post("QuanLyKhoaHoc/GhiDanhKhoaHoc", data)
+            .then((result) => {
+                dispatch(regCourseByAdminSuccess(result.data));
+                dispatch(getCourseUnReg(data.taiKhoan));
+                dispatch(getCourseWaitConfirm({ taiKhoan: data.taiKhoan }));
+                dispatch(getCourseConfirm({ taiKhoan: data.taiKhoan }));
+                Swal.fire("Thành công", "Ghi danh thành công", "success");
+            })
+            .catch((error) => {
+                dispatch(regCourseByAdminFail(error));
+                Swal.fire("Thất bại", error.response?.data, "error");
+            });
+    };
+};
+
+const regCourseByAdminRequest = () => ({
+    type: actionTypes.REG_COURSE_BY_ADMIN_REQUEST,
+});
+
+const regCourseByAdminSuccess = (data) => ({
+    type: actionTypes.REG_COURSE_BY_ADMIN_SUCCESS,
+    payload: data,
+});
+
+const regCourseByAdminFail = (error) => ({
+    type: actionTypes.REG_COURSE_BY_ADMIN_FAIL,
     payload: error,
 });
