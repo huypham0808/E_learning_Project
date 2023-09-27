@@ -187,7 +187,7 @@ export const registerCourse = (data) => {
   });
   
   const actRegisterCourseSuccess = (data) => ({
-    type: actionTypes.REGISTER_COURSE_REQUEST,
+    type: actionTypes.REGISTER_COURSE_SUCCESS,
     payload: data,
   });
   
@@ -215,11 +215,11 @@ export const actGetUserDetailRequest = () => ({
     type: actionTypes.GET_USER_DETAIL_REQUEST,
 });
 export const actGetUserDetailSuccess = (data) => ({
-    type: actionTypes.GET_COURSE_DETAIL_SUCCESS,
+    type: actionTypes.GET_USER_DETAIL_SUCCESS,
     payload: data,
 });
 export const actGetUserDetailFail = (error) => ({
-    type: actionTypes.GET_COURSE_DETAIL_FAIL,
+    type: actionTypes.GET_USER_DETAIL_FAIL,
     payload: error,
 });
 

@@ -54,7 +54,7 @@ export default function Navbar() {
                         data-toggle="dropdown"
                         aria-expanded="false"
                     >
-                        {user.taiKhoan}
+                        Xin chào {user.taiKhoan}
                     </button>
                     <ul className='dropdown-menu'>
                         {user.maLoaiNguoiDung === "GV" && (
@@ -63,7 +63,7 @@ export default function Navbar() {
                                     <Link
                                         className="dropdown-item"
                                         style={{ fontSize: 16 }}
-                                        to="/admin">
+                                        to="/admin/courses">
                                         Vào trang quản trị
                                     </Link>
                                 </li>
@@ -84,7 +84,7 @@ export default function Navbar() {
                         <li>
                             <button className='dropdown-item'
                                 style={{ fontSize: 16 }}
-                                onClick={() => handleLogout(dispatch)}>
+                                onClick={() => dispatch(actLogOut(navigate))}>
                                 Đăng xuất
                             </button>
                         </li>
