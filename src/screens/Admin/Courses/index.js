@@ -50,29 +50,29 @@ export default function Courses() {
             .string()
             .min(2, "* Mã khóa học quá ngắn")
             .max(20, "* Mã khóa học không quá 20 ký tự")
-            .required("* Mã khóa học không được bỏ trống!"),
-        tenKhoaHoc: yup.string().required("* Tên khóa học không được bỏ trống!"),
-        maDanhMucKhoaHoc: yup.string().required("* Danh mục không được bỏ trống!"),
+            .required("* Mã khóa học không được để trống!"),
+        tenKhoaHoc: yup.string().required("* Tên khóa học không được để trống!"),
+        maDanhMucKhoaHoc: yup.string().required("* Danh mục không được để trống!"),
         ngayTao: yup
             .string()
-            .required("* Ngày tạo không được bỏ trống!")
+            .required("* Ngày tạo không được để trống!")
             .matches(
                 /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]|(?:Jan|Mar|May|Jul|Aug|Oct|Dec)))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2]|(?:Jan|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec))\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)(?:0?2|(?:Feb))\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9]|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep))|(?:1[0-2]|(?:Oct|Nov|Dec)))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,
                 "* Vui lòng nhập đúng định dạng DD/MM/YYYY",
             ),
         danhGia: yup
             .number()
-            .required("* Đánh giá không được bỏ trống!")
+            .required("* Đánh giá không được để trống!")
             .min(0, "* Đánh giá thấp nhất là 0")
             .max(5, "* Đánh giá cao nhất là 5"),
         luotXem: yup
             .number()
-            .required("* Lượt xem không được bỏ trống!")
+            .required("* Lượt xem không được để trống!")
             .min(0, "* Lượt xem thấp nhất là 0"),
         taiKhoanNguoiTao: yup
             .string()
-            .required('* Người tạo không được bỏ trống!"'),
-        moTa: yup.string().required('* Mô tả không được bỏ trống!"'),
+            .required('* Người tạo không được để trống!"'),
+        moTa: yup.string().required('* Mô tả không được để trống!"'),
     });
 
     if (loading) return <Loader />;
@@ -119,7 +119,7 @@ export default function Courses() {
                             type="button"
                             key={1}
                             data-toggle="modal"
-                            data-target="#staticBackdrop"                
+                            data-target="#staticBackdrop"
                             onClick={() => {
                                 handleDataCourse(course);
                             }}
@@ -149,9 +149,9 @@ export default function Courses() {
                                             data-dismiss="modal"
                                             aria-label="Close"
                                             onClick={() => dispatch(fetchListCourse())}>
-                                                Đóng
-                                            </button>
-                                        
+                                            Đóng
+                                        </button>
+
                                     </div>
                                     <div className="modal-body">
                                         <Formik
@@ -275,15 +275,10 @@ export default function Courses() {
                                                                     >
                                                                         <option
                                                                             value={
-                                                                                dataCourse
-                                                                                    ? dataCourse.danhMucKhoaHoc
-                                                                                        .maDanhMucKhoahoc
-                                                                                    : ""
+                                                                                dataCourse? dataCourse.danhMucKhoaHoc.maDanhMucKhoahoc: ""
                                                                             }
                                                                         >
-                                                                            {dataCourse
-                                                                                ? dataCourse.danhMucKhoaHoc
-                                                                                    .tenDanhMucKhoaHoc
+                                                                            {dataCourse? dataCourse.danhMucKhoaHoc.tenDanhMucKhoaHoc
                                                                                 : "Chọn danh mục"}
                                                                         </option>
                                                                         {renderCourseCate()}
@@ -521,7 +516,7 @@ export default function Courses() {
                 data-toggle="modal"
                 data-target="#staticBackdrop"
                 onClick={() => {
-                  handleDataCourse(null);
+                    handleDataCourse(null);
                 }}
             >
                 Thêm khóa học

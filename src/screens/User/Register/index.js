@@ -64,43 +64,86 @@ export default function Register() {
                     dispatch(actRegister(values, navigate));
                 }}>
                 {() => (
-                    <Form>
-                        <div className="form-group">
-                            <Field type="text" className="form-control border-dark" name="hoTen" placeholder="Tên đầy đủ" style={{ fontSize: 18 }} />
-                            <ErrorMessage name='hoTen' component="div" style={{ color: "red" }} />
+                    <Form className='mx-1 mx-md-4'>
+                        <div className="form-outline flex-fill my-3">
+                            <Field
+                                type="text"
+                                className="form-control border-dark"
+                                name="hoTen"
+                                placeholder="Tên đầy đủ"
+                                style={{ fontSize: 18 }} />
+                            <ErrorMessage
+                                name='hoTen'
+                                component="div"
+                                style={{ color: "red" }} />
                         </div>
-                        <div className="form-group">
-                            <Field type="text" className="form-control border-dark" name="taiKhoan" placeholder="Nhập tên tài khoản" style={{ fontSize: 18 }} />
-                            <ErrorMessage name='taiKhoan' component="div" style={{ color: "red" }} />
+                        <div className="form-outline flex-fill my-3">
+                            <Field
+                                type="text"
+                                className="form-control border-dark"
+                                name="taiKhoan"
+                                placeholder="Nhập tên tài khoản"
+                                style={{ fontSize: 18 }} />
+                            <ErrorMessage
+                                name='taiKhoan'
+                                component="div"
+                                style={{ color: "red" }} />
                         </div>
-                        <div className="form-group">
-                            <Field type="password" className="form-control border-dark" name="matKhau" placeholder="Nhập mật khẩu" style={{ fontSize: 18 }} />
-                            <ErrorMessage name='matKhau' component="div" style={{ color: "red" }} />
+                        <div className="form-outline flex-fill my-3">
+                            <Field
+                                type="password"
+                                className="form-control border-dark"
+                                name="matKhau"
+                                placeholder="Nhập mật khẩu"
+                                style={{ fontSize: 18 }} />
+                            <ErrorMessage
+                                name='matKhau'
+                                component="div"
+                                style={{ color: "red" }} />
                         </div>
-                        <div className="form-group">
-                            <Field type="text" className="form-control border-dark" name="soDT" placeholder="Nhập số điện thoại" style={{ fontSize: 18 }} />
-                            <ErrorMessage name='soDT' component="div" style={{ color: "red" }} />
+                        <div className="form-outline flex-fill my-3">
+                            <Field
+                                type="text"
+                                className="form-control border-dark"
+                                name="soDT"
+                                placeholder="Nhập số điện thoại"
+                                style={{ fontSize: 18 }} />
+                            <ErrorMessage
+                                name='soDT'
+                                component="div"
+                                style={{ color: "red" }} />
                         </div>
-                        <div className="form-group">
-                            <Field type="email" className="form-control border-dark" name="email" placeholder="Nhập Email" style={{ fontSize: 18 }} />
-                            <ErrorMessage name='email' component="div" style={{ color: "red" }} />
+                        <div className="form-outline flex-fill my-3">
+                            <Field
+                                type="email"
+                                className="form-control border-dark"
+                                name="email"
+                                placeholder="Nhập Email"
+                                style={{ fontSize: 18 }} />
+                            <ErrorMessage
+                                name='email'
+                                component="div"
+                                style={{ color: "red" }} />
                         </div>
                         <div className="form-check">
-                            <input type="checkbox" className="form-check-input" checked={isCheck}
-                            onChange={handleCheck} />
+                            <input
+                                type="checkbox"
+                                className="form-check-input"
+                                checked={isCheck}
+                                onChange={handleCheck} />
                             <small className="form-check-label text-muted text-center" htmlFor="exampleCheck1">Bằng việc đăng ký, bạn đồng ý với Điều khoản sử Chính sách về quyền riêng tư.</small>
                         </div>
                         <button style={{ height: "40px", fontWeight: "500", fontSize: "18px" }} type="submit" className="btn btn-success w-100 mt-3 btn-lg" disabled={!isCheck}>Đăng ký</button>
                     </Form>
                 )}
             </Formik>
-            <p className='my-2 pb-lg-2 text-center' style={{color:"#393f81"}}>
+            <p className='my-2 pb-lg-2 text-center' style={{ color: "#393f81" }}>
                 Đã có tài khoản ? {" "}
-                <Link to="/user/login" style={{color:"#393f81"}}>
+                <Link to="/user/login" style={{ color: "#393f81" }}>
                     <span className='text-primary'>Đăng nhập</span>
                 </Link>
                 {" - "}
-                <Link to="/" style={{color:"#393f81"}}>
+                <Link to="/" style={{ color: "#393f81" }}>
                     <span className='text-danger'>Trang chủ</span>
                 </Link>
             </p>

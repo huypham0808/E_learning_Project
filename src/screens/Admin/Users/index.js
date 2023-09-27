@@ -2,10 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Table, Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../../components/Loader";
-import {
-
-  EditOutlined,
-} from "@ant-design/icons";
 import { getListUsers } from "../../../redux/types/actions";
 import { deleteUser } from "../../../redux/types/actions";
 import { actUpdateUser } from "../../../redux/types/actions";
@@ -99,7 +95,7 @@ export default function Users() {
           <>
             {/* edit user */}
             <button
-            className="btn btn-primary"
+              className="btn btn-primary"
               type="button"
               key={1}
               data-toggle="modal"
@@ -130,9 +126,9 @@ export default function Users() {
                       data-dismiss="modal"
                       aria-label="Close"
                       onClick={() => dispatch(getListUsers())}>
-                        Đóng
-                      </button>
-                    
+                      Đóng
+                    </button>
+
                   </div>
                   <div className="modal-body">
                     <Formik
@@ -291,7 +287,7 @@ export default function Users() {
             </div>
             {/* delete user */}
             <button
-            className="btn btn-danger"
+              className="btn btn-danger"
               key={2}
               style={{ cursor: "pointer", margin: "0 10px" }}
               onClick={() => {
@@ -323,7 +319,7 @@ export default function Users() {
     <div>
       <h2 className="text-center">QUẢN LÝ NGƯỜI DÙNG</h2>
       <button
-        type="primary"      
+        type="primary"
         className="btn btn-primary my-3"
         data-toggle="modal"
         data-target="#staticBackdrop"
