@@ -76,8 +76,8 @@ const Dashboard = () => {
                     className="d-flex align-items-center justify-content-center py-2"
                 >
                     <img className="mr-3" src="https://media.istockphoto.com/id/1146021242/vector/distant-learning-online-education-graduate-hat-on-a-laptop.jpg?s=612x612&w=0&k=20&c=X3prrYH9KfPdDke0DGdnRjk-sKBgebP6byGMg-ce8Rc=" width={50} alt="E-learning" />
-                    <span className="text-light" style={{ fontSize: 20 }} hidden={collapsed}>
-                        E-Learning
+                    <span className="text-primary" style={{ fontSize: 20 }} hidden={collapsed}>
+                        H-Learning
                     </span>
                 </Link>
                 <Menu

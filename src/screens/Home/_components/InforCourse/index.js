@@ -22,9 +22,9 @@ export default function InforCourse() {
                     <div className='inforItemContent'>
                         <h3>LỘ TRÌNH PHÙ HỢP</h3>
                         <ul>
-                            <li>Lộ trình bài bản từ zero tới chuyên nghiệp, nâng cao</li>
-                            <li>Học, luyện tập code, kỹ thuật phân tích, soft skill</li>
-                            <li>Huấn luyện để phát triển năng lực và niềm đam mê lập trình</li>
+                            <li><i class="fa-solid fa-check fa-lg"></i>Lộ trình bài bản từ zero tới chuyên nghiệp, nâng cao</li>
+                            <li><i class="fa-solid fa-check fa-lg"></i>Học, luyện tập code, kỹ thuật phân tích, soft skill</li>
+                            <li><i class="fa-solid fa-check fa-lg"></i>Huấn luyện để phát triển năng lực và niềm đam mê lập trình</li>
                         </ul>
                     </div>
                 </div>
@@ -32,9 +32,9 @@ export default function InforCourse() {
                     <div className='inforItemContent'>
                         <h3>HỆ THỐNG HỌC TẬP</h3>
                         <ul>
-                            <li>Tự động chấm điểm trắc nghiệm và đưa câu hỏi tùy theo mức độ học viên</li>
-                            <li>Thống kê lượt xem video, làm bài, điểm số theo chu kỳ</li>
-                            <li>Thống kê, so sánh khả năng học của các học viên cùng level để đưa ra mục tiêu học tập</li>
+                            <li><i class="fa-solid fa-check fa-lg"></i>Tự động chấm điểm trắc nghiệm và đưa câu hỏi tùy theo mức độ học viên</li>
+                            <li><i class="fa-solid fa-check fa-lg"></i>Thống kê lượt xem video, làm bài, điểm số theo chu kỳ</li>
+                            <li><i class="fa-solid fa-check fa-lg"></i>Thống kê, so sánh khả năng học của các học viên cùng level để đưa ra mục tiêu học tập</li>
                         </ul>
                     </div>
                 </div>
@@ -42,9 +42,9 @@ export default function InforCourse() {
                     <div className='inforItemContent'>
                         <h3>GIẢNG VIÊN</h3>
                         <ul>
-                            <li>Tương tác cùng mentor và giảng viên qua phần thảo luận</li>
-                            <li>Review code và đưa ra các nhận xét góp ý</li>
-                            <li>Chấm điểm tương tác thảo luận giữa các học viên</li>
+                            <li><i class="fa-solid fa-check fa-lg"></i>Tương tác cùng mentor và giảng viên qua phần thảo luận</li>
+                            <li><i class="fa-solid fa-check fa-lg"></i>Review code và đưa ra các nhận xét góp ý</li>
+                            <li><i class="fa-solid fa-check fa-lg"></i>Chấm điểm tương tác thảo luận giữa các học viên</li>
                         </ul>
                     </div>
                 </div>
@@ -52,9 +52,9 @@ export default function InforCourse() {
                     <div className='inforItemContent'>
                         <h3>CHỨNG NHẬN</h3>
                         <ul>
-                            <li>Chấm bài và có thể vấn đáp trực tuyến để review</li>
-                            <li>Hệ thống của chúng tôi cũng tạo ra cho bạn một CV trực tuyến độc đáo</li>
-                            <li>Kết nối CV của bạn đến với các đối tác của V learning</li>
+                            <li><i class="fa-solid fa-check fa-lg"></i>Chấm bài và có thể vấn đáp trực tuyến để review</li>
+                            <li><i class="fa-solid fa-check fa-lg"></i>Hệ thống của chúng tôi cũng tạo ra cho bạn một CV trực tuyến độc đáo</li>
+                            <li><i class="fa-solid fa-check fa-lg"></i>Kết nối CV của bạn đến với các đối tác của V learning</li>
                         </ul>
                     </div>
                 </div>

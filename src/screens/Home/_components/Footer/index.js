@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.css'
+import { Link } from 'react-router-dom';
 
 
 export default function Footer() {
@@ -78,7 +79,9 @@ export default function Footer() {
                                 <input type="text" className='formFooter' placeholder='Email' />
                                 <input type="text" className='formFooter' placeholder='Số điện thoại' />
                             </form>
-                            <button className='btn btn-warning text-white mt-2'>Đăng ký</button>
+                            <button className='btn btn-warning mt-2'>
+                                <Link className='text-light' to="/user/register">Đăng ký</Link>
+                            </button>
                         </div>
                     </div>
                 </div>

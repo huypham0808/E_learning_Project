@@ -3,9 +3,11 @@
     box-sizing: border-box;
     font-size: 16px;
 }
-
-/* Css for Homepage */
-
+@media screen and (max-width: 767px) {
+    body {
+        font-size: 12px;
+    }
+}
 
 /* CSS for Navbar */
 .elearningNav {
@@ -64,11 +66,8 @@ ul.elearning__CateList li a {
 
 
 /*---------------------- CSS for Course Infor ---------------------- */
-
-
 .inforCourseBox {
     padding: 50px 0;
-
 }
 
 .inforCourseHome {
@@ -109,7 +108,14 @@ ul.elearning__CateList li a {
 .inforSmallItemC {
     background-color: #63c0a8;
 }
-
+@media screen and (max-width: 46.1875em) {
+    .inforCourseHome {
+        grid-template-columns: none;
+    }
+}
+.boxNumberContainer {
+    padding: 50px;
+}
 /* DETAIL PAGE */
 /* CSS for Course Detail Page */
 .course-details {
