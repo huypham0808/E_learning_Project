@@ -40,7 +40,7 @@ export default function Navbar() {
         };
         if (!user) {
             return (
-                <div>
+                <div className='logIn__Register'>
                     <Link to="/user/login" className="btn btn-outline-success mr-3">Đăng nhập</Link>
                     <Link to="/user/register" className="btn btn-success">Đăng ký</Link>
                 </div>
@@ -97,7 +97,7 @@ export default function Navbar() {
         <header className='fixed-top '>
             <nav className="navbar navbar-expand-lg navbar-light bg-light shadow">
                 <div className='container-fluid container-lg d-flex justify-content-between'>
-                    <Link to="/" className="navbar-brand" href="#" style={{ fontSize: "30px" }}>H-learning</Link>
+                    <Link to="/" className="navbar-brand text-success" href="/" style={{ fontSize: "30px", fontWeight:700}}>H-learning</Link>
                     <Search placeholder="Tìm kiếm khóa học" onChange={(e) => setKeyWord(e.target.value)}
                         onSearch={onSearch}
                         value={keyword}
@@ -128,7 +128,6 @@ export default function Navbar() {
                     </div>
                     {renderLogin()}
                 </div>
-
             </nav>
         </header>
     )

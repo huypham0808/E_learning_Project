@@ -612,16 +612,13 @@ export const getCourseUnReg = (taiKhoan) => {
             });
     };
 };
-
 const getCourseUnRegRequest = () => ({
     type: actionTypes.COURSES_UNREG_REQUEST,
 });
-
 const getCourseUnRegSuccess = (data) => ({
     type: actionTypes.COURSES_UNREG_SUCCESS,
     payload: data,
 });
-
 const getCourseUnRegFail = (error) => ({
     type: actionTypes.COURSES_UNREG_FAIL,
     payload: error,
@@ -641,16 +638,13 @@ export const getCourseWaitConfirm = (taiKhoan) => {
             });
     };
 };
-
 const courseWaitConfirmRequest = () => ({
     type: actionTypes.COURSES_WAIT_CONFIRM_REQUEST,
 });
-
 const courseWaitConfirmSuccess = (data) => ({
     type: actionTypes.COURSES_WAIT_CONFIRM_SUCCESS,
     payload: data,
 });
-
 const courseWaitConfirmFail = (error) => ({
     type: actionTypes.COURSES_WAIT_CONFIRM_FAIL,
     payload: error,

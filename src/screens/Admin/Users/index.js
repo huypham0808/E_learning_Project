@@ -6,9 +6,6 @@ import { getListUsers } from "../../../redux/types/actions";
 import { deleteUser } from "../../../redux/types/actions";
 import { actUpdateUser } from "../../../redux/types/actions";
 import { addUser } from "../../../redux/types/actions";
-import { getCourseUnReg } from "../../../redux/types/actions";
-import { getCourseWaitConfirm } from "../../../redux/types/actions";
-import { getCourseConfirm } from "../../../redux/types/actions";
 import Swal from "sweetalert2";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as yup from "yup";
@@ -89,7 +86,7 @@ export default function Users() {
       width: "15%",
     },
     {
-      title: "Tác vụ",
+      title: "Tuỳ chỉnh",
       render: (text, user) => {
         return (
           <>
@@ -108,8 +105,8 @@ export default function Users() {
             <div
               className="modal fade"
               id="staticBackdrop"
-              data-bs-backdrop="static"
-              data-bs-keyboard="false"
+              data-backdrop="static"
+              data-keyboard="false"
               tabIndex={-1}
               aria-labelledby="staticBackdropLabel"
               aria-hidden="true"
