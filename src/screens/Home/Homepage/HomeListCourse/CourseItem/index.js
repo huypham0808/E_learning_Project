@@ -14,7 +14,7 @@ export default function CourseItem(props) {
                         <p className='price'><i class="fa-solid fa-eye"></i> {course.luotXem}</p>
                     </div>
                     <h3>
-                        <Link to={`/detail-course/${course.maKhoaHoc}`}>
+                        <Link to={`/chi-tiet-khoa-hoc/${course.maKhoaHoc}`}>
                             {course.tenKhoaHoc}
                         </Link>
                     </h3>
